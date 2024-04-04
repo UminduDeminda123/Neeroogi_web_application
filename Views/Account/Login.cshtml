@@ -1,0 +1,167 @@
+﻿@using Neerogilksample.Data.ViewModels;
+@model LoginVM;
+
+@{ 
+   
+    ViewData["Title"] = "Log in to your account";
+    Layout = "_LoginLayout";
+}
+
+
+<style>
+
+    #email {
+        color: black;
+    }
+
+    #pswd {
+        color: black;
+    }
+</style>
+
+@*<div class="row">*@
+   
+     
+        @*@if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
+
+
+        <div class="row">*@
+
+
+            <div class="limiter">
+                <div class="container-login100">
+                    <div class="wrap-login100">
+                        <div>
+                            <center>
+
+                                <img src="~/logoimages/1.png" style="width:200px;height:125px" />
+                            </center>
+                        </div>
+
+                        <div class="text-center">
+                            <img class="card-img-top border-info rounded-circle " style="height:125px;width:125px;"  src="~/logindetails/images/hospital-patient-icon.png" alt="Card image cap">
+                        </div>
+
+                      
+                        <form asp-action="Login" class="login100-form ">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <span class="login100-form-title p-b-34 p-t-27 form-group">
+                                Log in
+                            </span>
+
+
+                            @*<div class="form-group">
+
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>*@
+
+                            <div class="form-group">
+                                <label id="email" asp-for="EmailAddress" class="control-label"></label>
+                                <div class="input-group">
+                                    <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                        <i class="mdi mdi-18px mdi-account"></i>
+                                    </div>
+                                    <input id="logemail" asp-for="EmailAddress" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your Email">
+                                </div>
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+
+
+                            </div>
+
+
+                            @*<div class="form-group">
+
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>*@
+
+                            <div class="form-group">
+                                <label id="pswd" asp-for="Password" class="control-label"></label>
+                                <div class="input-group">
+                                    <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                        <i class="mdi mdi-18px mdi-lock"></i>
+                                    </div>
+                                    <input id="logpswd" asp-for="Password" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your Password">
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+
+
+                            </div>
+
+                            @*<div class="form-group">
+                <div class="input-group">
+                    <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                        <i class="mdi mdi-24px mdi-account"></i>
+                    </div>
+                    <input type="text" class="form-control form-control-lg pl-5 rounded-pill" placeholder="username">
+                </div>
+            </div>*@
+
+
+
+                            <div class="form-group">
+
+                                <input class="btn btn-success btn-lg btn-block" type="submit" value="Log in" />
+
+                            </div>
+
+                            <div class="form-group">
+                                <a class="btn btn-light btn-lg btn-block" asp-controller="Home" asp-action="Index">Cancel</a>
+                            </div>
+                        </form>
+                        @*<i class="bi bi-lock-fill"></i>*@
+
+                    </div>
+                </div>
+            </div>
+@*<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h4>Log in to your account</h4>
+        </p>
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
+
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="EmailAddress" class="control-label"></label>
+                        <input asp-for="EmailAddress" class="form-control" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="btn btn-outline-success float-right" type="submit" value="Log in" />
+                        <a class="btn btn-outline-secondary" asp-controller="Movies" asp-action="Index">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+            @*<div id="dropDownSelect1"></div>*@
+            @*</div>
+        </div>*@

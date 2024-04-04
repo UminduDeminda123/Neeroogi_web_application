@@ -1,0 +1,106 @@
+﻿@model Notification
+@{ ViewData["Title"] = "Send a New Notification";
+}
+<head>
+    <link rel="stylesheet" type="text/css" href="/logindetails/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/logindetails/css/main.css">
+    <style>
+        html, body {
+            overflow-x: hidden;
+            color: black;
+        }
+
+        .bodydoc {
+            /*background-image: */ /*url("/wwwroot/logoimages/DocBackground1.png");*/ /*url('~/wwwroot/logoimages/DocBackground1.png');*/
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100%;
+            background-size: cover;
+            color: black;
+        }
+
+        .new {
+            align-content: center;
+            width: auto;
+            border-radius: 20px;
+            background: #9152f8;
+            opacity: 0.9;
+            background: -webkit-linear-gradient(top, #00A69C, #9DFCAE);
+            background: -o-linear-gradient(top, #00A69C, #9DFCAE);
+            background: -moz-linear-gradient(top, #00A69C, #9DFCAE);
+            background: linear-gradient(top, #00A69C, #9DFCAE);
+        }
+    </style>
+</head>
+<body class="bodydoc" style="background-image:url('DocBackground1.png')">
+    <center>
+        <div class="row p-5">     </div>
+        <div class="row p-5">     </div>
+        <div class="row p-5">     </div>
+        <div style="padding-top:100px;">
+            <div class="new col-md-6 col-sm-12">
+                <p>
+                    <h4>Send a New Notification</h4>
+                </p>
+
+                @*<div class="card" style="width: auto;">*@
+                <div>
+
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8 offset-2">
+                                <form asp-action="Create">
+
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+
+                                    <!--Adding a Row-->
+                                    <div class="row">
+                                        <!--Adding details to display on left side of the form-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label asp-for="NotiDate" class="control-label"></label>
+                                                <input asp-for="NotiDate" class="form-control" />
+                                                <span asp-validation-for="NotiDate" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="form-group">
+                                                <label asp-for="Type" class="control-label"></label>
+                                                <input asp-for="Type" class="form-control" />
+
+                                                <span asp-validation-for="Type" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="NotiDescription" class="control-label"></label>
+                                                <input asp-for="NotiDescription" class="form-control" />
+                                                <span asp-validation-for="NotiDescription" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                                        <a class="btn btn-outline-secondary" asp-controller="Notification" asp-action="Index">Show All</a>
+                                    </div>
+                                </form>
+
+
+
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </center>
+
+</body>

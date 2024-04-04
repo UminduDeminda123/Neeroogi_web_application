@@ -1,0 +1,161 @@
+﻿@using Neerogilksample.Data.ViewModels;
+@model DeliveryPersonRegisterVM;
+
+@{
+
+    ViewData["Title"] = "Register with Neerogilk";
+    Layout = "_DPersonLoginLayout";
+}
+
+
+<style>
+
+    #email {
+        color: black;
+    }
+
+    #pswd {
+        color: black;
+    }
+</style>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div>
+                <center>
+
+                    <img src="~/logoimages/1.png" style="width:200px;height:125px" />
+                </center>
+            </div>
+            <div class="text-center">
+                <img class="card-img-top border-info rounded-circle " style="height:125px;width:125px;" src="~/logindetails/images/icons/butler-icon.png" alt="Card image cap">
+            </div>
+            <form asp-action="Register" class="login100-form ">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <span class="login100-form-title p-b-34 p-t-27 form-group">
+                    Delivery Person Registration
+                </span>
+
+
+                <div class="row">
+                    <div class="col">
+
+
+                        <div class="form-group">
+                            <label id="email" asp-for="DeliveryPersonFirstName" class="control-label"></label>
+                            <div class="input-group">
+                                <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                    <i class="mdi mdi-12px mdi-account"></i>
+                                </div>
+                                <input id="fname" asp-for="DeliveryPersonFirstName" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your First Name">
+                            </div>
+                            <span asp-validation-for="DeliveryPersonFirstName" class="text-danger"></span>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label id="email" asp-for="DPersonEmailAddress" class="control-label"></label>
+                            <div class="input-group">
+                                <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                    <i class="mdi mdi-12px mdi-account"></i>
+                                </div>
+                                <input id="emailad" asp-for="DPersonEmailAddress" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your Email">
+                            </div>
+                            <span asp-validation-for="DPersonEmailAddress" class="text-danger"></span>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label id="email" asp-for="DPersonPassword" class="control-label"></label>
+                            <div class="input-group">
+                                <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                    <i class="mdi mdi-12px mdi-account"></i>
+                                </div>
+                                <input id="inpswd" asp-for="DPersonPassword" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your Password">
+                            </div>
+                            <span asp-validation-for="DPersonPassword" class="text-danger"></span>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="col">
+
+                        <div class="form-group">
+                            <label id="email" asp-for="DeliveryPersonLastName" class="control-label"></label>
+                            <div class="input-group">
+                                <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                    <i class="mdi mdi-12px mdi-account"></i>
+                                </div>
+                                <input id="lname" asp-for="DeliveryPersonLastName" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your Last Name">
+                            </div>
+                            <span asp-validation-for="DeliveryPersonLastName" class="text-danger"></span>
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label id="email" asp-for="DPersonConfirmEmail" class="control-label"></label>
+                            <div class="input-group">
+                                <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                    <i class="mdi mdi-12px mdi-account"></i>
+                                </div>
+                                <input id="cnemail" asp-for="DPersonConfirmEmail" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Confirm Your Email">
+                            </div>
+                            <span asp-validation-for="DPersonConfirmEmail" class="text-danger"></span>
+
+
+                        </div>
+
+
+                        <div class="form-group">
+                            <label id="email" asp-for="DPersonConfirmPassword" class="control-label"></label>
+                            <div class="input-group">
+                                <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                    <i class="mdi mdi-12px mdi-account"></i>
+                                </div>
+                                <input id="cnpswd" asp-for="DPersonConfirmPassword" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Confirm Your Password">
+                            </div>
+                            <span asp-validation-for="DPersonConfirmPassword" class="text-danger"></span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+                <div class="form-group">
+
+                    <input class="btn btn-success btn-lg btn-block" type="submit" value="Register" />
+
+                </div>
+
+                <div class="form-group">
+                    <a class="btn btn-light btn-lg btn-block" asp-controller="Home" asp-action="Index">Cancel</a>
+                </div>
+
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,175 @@
+﻿@model IEnumerable<Doctor>
+@{
+    ViewData["Title"] = "Our Verified Doctors";
+
+
+
+}
+<div class="row p-5">     </div>
+<div class="row p-5">     </div>
+<div class="row p-5">     </div>
+<div class="row p-5">     </div>
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <title>Material Cards | jQuery Plugin Demo</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,500,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    @*<link href="~/css/bootstrap.min.css" rel="stylesheet" />*@
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />*@
+    <link href="~/Testdoc/dist/material-cards.css" rel="stylesheet" />
+
+    @*<link href="~/css/teststyle.css" rel="stylesheet" />*@
+
+
+    <style type="text/css">
+
+        html {
+            position: relative;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 13px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-weight: 200;
+        }
+
+        body {
+            background-color: #c5ebff;
+            background-image: linear-gradient(160deg, #c5ebff 0%, #adfff8 100%);
+        }
+    </style>
+
+</head>
+
+
+<div class="row ">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-12 border-primary mb-3 ">
+            <section class="container">
+                <div class="row active-with-click ">
+
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <article class="material-card Light-Blue">
+                            <h2>
+                                <span>Dr.@item.FullName</span>
+                                <strong>
+                                    <i class="bi bi-star-fill"></i>
+
+                                    @item.Degree
+                                </strong>
+                                <strong>
+                                    @item.RegNumber
+                                </strong>
+                            </h2>
+                            <div class="mc-content">
+                                <div class="img-container">
+                                    <img class="img-responsive" src="@item.ProfilePictureURL">
+                                </div>
+                                <div class="mc-description">
+                                    @item.DegreeSpecialization
+                                </div>
+                            </div>
+                            <a class="mc-btn-action">
+
+                                <i class="bi bi-hand-thumbs-up-fill"></i>
+                            </a>
+                            <div class="mc-footer">
+                                <h4>
+                                    Social
+                                </h4>
+                                <a href=""><center><i class="bi bi-facebook"></i></center></a>
+                                <a href=""><center><i class="bi bi-twitter"></i></center></a>
+                                <a href=""><center><i class="bi bi-linkedin"></i></center></a>
+                                <a href=""><center><i class="bi bi-google"></i></center></a>
+                            </div>
+                        </article>
+
+                        <div class="row p-5 gap-3 ">
+                            <div class="col-md-4 p-2">
+                                <a class="btn btn-danger  btn-block float-right" asp-action="Delete" asp-route-id="@item.Id">
+                                    <center><i class="bi bi-trash"></i> Delete</center>
+
+                                </a>
+                            </div>
+                            <div class="col-md-4 p-2">
+
+                                <a class="btn btn-info btn-block  float-none" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye"></i> Info
+                                </a>
+                            </div>
+
+                            <div class="col-md-4 p-2">
+                                <a class="btn btn-primary btn-block  float-left" asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row p-5">     </div>
+                        <div class="row p-5">     </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+    }
+</div>
+
+
+
+
+
+@await Html.PartialAsync("_CreateItem", "Doctors")
+
+@section Scripts{
+
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    @*<script src="../js/jquery.material-cards.min.js"></script>*@
+
+    <script src="~/Testdoc/js/jquery.material-cards.min.js"></script>
+
+    <script>
+        $(function () {
+            $('.material-card').materialCard({
+                icon_close: 'bi bi-arrow-left-circle-fill',
+                icon_open: 'bi bi-hand-thumbs-up-fill',
+                icon_spin: 'bi bi-arrow-repeat',
+                card_activator: 'click'
+            });
+
+            //        $('.active-with-click .material-card').materialCard();
+
+            window.setTimeout(function () {
+                $('.material-card:eq(1)').materialCard('open');
+            }, 2000);
+
+            $('.material-card').on('shown.material-card show.material-card hide.material-card hidden.material-card', function (event) {
+                console.log(event.type, event.namespace, $(this));
+            });
+
+        });
+    </script>
+
+}

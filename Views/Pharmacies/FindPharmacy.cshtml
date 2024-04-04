@@ -1,0 +1,63 @@
+﻿@model List<Pharmacy>
+@inject UserManager<ApplicationUser> UserManager;
+@{
+    ViewData["Title"] = "Find the Nearest Pharmacy for your Delivery Location";
+}
+<head>
+    <link href="~/Background/StyleSheet.css" rel="stylesheet" />
+</head>
+<div class="pha">
+    <style>
+            /*#cardbackground {
+            background-color: #CCFFCC;
+        }*/
+
+            #cardbackgroundinner {
+                /* background-color: #00CC00*/
+            }
+    </style>
+
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+    {
+        <center>
+            <h4>Welcome ! You can find the nearest Pharmacy from here.....</h4>
+            @*<h6><i>Please enter your email ID correctly into the Field Below</i> </h6>*@
+            <div class="col-md-4 col-xs-6 border-primary mb-3 " id="cardbackground">
+                <div class="card-mb-3" style="max-width: 600px;">
+                    <div class="row g-0" id="cardbackgroundinner">
+                        <div class="col-md-12">
+                            <div class="card-header text-white" style="background-color: #7919ff">
+                                <h6 style="color:white">Please Enter the Nearest City for your Delivery Location</h6>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col md-12">
+                            <div class="card-body" style="background-color: #9142ff" @*style="text-align:left"*@>
+                                <form class="form-inline my-2 my-lg-0" asp-controller="Pharmacies" asp-action="Filter" style="padding-right: 25px;">
+                                    <div class="col-md-6">
+
+                                        <input name="searchString" type="text" class="form-control" placeholder="Search for a Pharmacy..." aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <button class="btn btn-success my-2 my-sm-0" type="submit">Find the Nearest Pharmacy<i class="bi bi-eye"></i></button>
+
+                                    </div>
+
+                                </form>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
+
+    }
+</div>

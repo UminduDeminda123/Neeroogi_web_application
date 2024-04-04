@@ -1,0 +1,371 @@
+﻿@model NewDigitalPrescriptionVM
+@{
+    ViewData["Title"] = "Create a New Digital Prescription";
+}
+<link href="~/Background/StyleSheet.css" rel="stylesheet" />
+
+<style>
+    .heading {
+        font-size: 16px;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+<div class="row p-5">     </div>
+<div class="row digital">
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    <center>
+        <div style="padding-top:60px" class="delnew col-md-6 sm-12">
+            <p>
+                <h4>Create a New Digital Prescription</h4>
+            </p>
+            <br /><br /><br />
+            <div>
+                @*<div class="col-md-8 offset-2">*@
+                <!--<div class="row g-0">-->
+                @*<div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <div class="row">
+                                <p>
+                                    <h4>Digital Prescription</h4>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>*@
+                <!--</div>-->
+
+                <div class="row">
+                    <div class="col-md-8 offset-2">
+                        <form asp-action="Create">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="UserId" class="control-label"></label>
+                                        @*<select asp-for="PharmacyIds" class="form-control" multiple></select>*@
+                                        <select asp-for="UserId" class="form-control" asp-items="ViewBag.Users"></select>
+                                        <span asp-validation-for="UserId" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="PatientName" class="control-label"></label>
+                                        <input asp-for="PatientName" class="form-control" />
+                                        <span asp-validation-for="PatientName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Age" class="control-label"></label>
+                                        <input asp-for="Age" class="form-control" />
+                                        <span asp-validation-for="Age" class="text-danger"></span>
+                                    </div>
+                                    <!--<div class="form-group">
+                                    <label asp-for="DrugProductCategory" class="control-label"></label>
+                                    <select asp-for="DrugProductCategory" class="form-control"></select>-->
+                                    @*<select asp-for="DrugProductCategory" class="form-control" asp-items="Html.GetEnumSelectList<DrugProductCategory>"></select>*@
+                                    <!--<span asp-validation-for="DrugProductCategory" class="text-danger"></span>
+                                    </div>-->
+                                  
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="PatientAddress" class="control-label"></label>
+                                        <input asp-for="PatientAddress" class="form-control" />
+                                        <span asp-validation-for="PatientAddress" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="BirthDay" class="control-label"></label>
+                                        <input asp-for="BirthDay" type="date" class="form-control" />
+                                        <span asp-validation-for="BirthDay" class="text-danger"></span>
+                                    </div>
+                                    @*<div class="form-group">
+            <label asp-for="Mealperiod" class="control-label"></label>
+            <input asp-for="Mealperiod" class="form-control" />
+            <span asp-validation-for="Mealperiod" class="text-danger"></span>
+        </div>*@
+                                    <div class="form-group">
+                                        <label asp-for="ContactNumber" class="control-label"></label>
+                                        <input asp-for="ContactNumber" class="form-control" />
+                                        <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label asp-for="Description" class="control-label"></label>
+                                        <textarea asp-for="Description" class="form-control"></textarea>
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+
+                                    <div class="form-group">
+                                        <p class="heading">Medicine Name</p>
+
+                                        <input asp-for="Medicine1" class="form-control" />
+                                        <span asp-validation-for="Medicine1" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Medicine2" class="form-control" />
+                                        <span asp-validation-for="Medicine2" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Medicine3" class="form-control" />
+                                        <span asp-validation-for="Medicine3" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Medicine4" class="form-control" />
+                                        <span asp-validation-for="Medicine4" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Medicine5" class="form-control" />
+                                        <span asp-validation-for="Medicine5" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Medicine6" class="form-control" />
+                                        <span asp-validation-for="Medicine6" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="form-group">
+                                        <p class="heading">Dosage</p>
+
+                                        <input asp-for="Dosage1" class="form-control" />
+                                        <span asp-validation-for="Dosage1" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Dosage2" class="form-control" />
+                                        <span asp-validation-for="Dosage2" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Dosage3" class="form-control" />
+                                        <span asp-validation-for="Dosage3" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Dosage4" class="form-control" />
+                                        <span asp-validation-for="Dosage4" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Dosage5" class="form-control" />
+                                        <span asp-validation-for="Dosage5" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Dosage6" class="form-control" />
+                                        <span asp-validation-for="Dosage6" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="form-group">
+                                        <p class="heading">Description</p>
+
+                                        <input asp-for="Medides1" class="form-control" />
+                                        <span asp-validation-for="Medides1" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Medides2" class="form-control" />
+                                        <span asp-validation-for="Medides2" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Medides3" class="form-control" />
+                                        <span asp-validation-for="Medides3" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+
+                                        <input asp-for="Medides4" class="form-control" />
+                                        <span asp-validation-for="Medides4" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <input asp-for="Medides5" class="form-control" />
+                                        <span asp-validation-for="Medides5" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <input asp-for="Medides6" class="form-control" />
+                                        <span asp-validation-for="Medides6" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                @*<table>
+                                        <tr>
+                                            <th>Medicine Name</th>
+                                            <th>Dosage</th>
+                                            <th>Description</th>
+                                        </tr>
+                                        <tr>
+                                            <td><input asp-for="Medicine1" /></td>
+
+                                            <td><input asp-for="Dosage1" /></td>
+                                            <td><input asp-for="Medides1" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input asp-for="Medicine2" /></td>
+                                            <td><input asp-for="Dosage2" /></td>
+                                            <td><input asp-for="Medides2" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input asp-for="Medicine3" /></td>
+                                            <td><input asp-for="Dosage3" /></td>
+                                            <td><input asp-for="Medides3" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input asp-for="Medicine4" /></td>
+                                            <td><input asp-for="Dosage4" /></td>
+                                            <td><input asp-for="Medides4" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input asp-for="Medicine5" /></td>
+                                            <td><input asp-for="Dosage5" /></td>
+                                            <td><input asp-for="Medides5" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input asp-for="Medicine6" /></td>
+                                            <td><input asp-for="Dosage6" /></td>
+                                            <td><input asp-for="Medides6" /></td>
+                                        </tr>
+
+                                    </table>*@
+
+
+
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="Dateofissue" class="control-label"></label>
+                                        <input asp-for="Dateofissue" type="date" class="form-control" />
+                                        <span asp-validation-for="Dateofissue" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <img class="border-info rounded-circle" style="max-width:150px" id="SignaturePreview" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Signature" class="control-label"></label>
+                                        <input asp-for="Signature" class="form-control" />
+                                        <span asp-validation-for="Signature" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DoctorId" class="control-label"></label>
+                                        @*<select asp-for="DoctorId" class="form-control" multiple></select>*@
+                                        <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.Doctors"></select>
+                                        <span asp-validation-for="DoctorId" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label asp-for="ExpirationDate" class="control-label"></label>
+                                        <input asp-for="ExpirationDate" type="date" class="form-control" />
+                                        <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group text-center">
+                                        <img class="border-info rounded-circle" style="max-width:150px" id="SealPreview" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="Seal" class="control-label"></label>
+                                        <input asp-for="Seal" class="form-control" />
+                                        <span asp-validation-for="Seal" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="PharmacyIds" class="control-label"></label>
+                                        @*<select asp-for="PharmacyIds" class="form-control" multiple></select>*@
+                                        <select asp-for="PharmacyIds" class="form-control" asp-items="ViewBag.Pharmacies"></select>
+                                        <span asp-validation-for="PharmacyIds" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                                <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </center>
+    <div class="row p-5">     </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        //$("ImageURL").on("change", function () {
+        //    var output = document.getElementById("ImageUrlPreview");
+        //    output.src = $(this).val();
+        //})
+
+        //Signature
+
+        $(document).ready(function () {
+            var output = document.getElementById('SignaturePreview');
+            output.src = $("#Signature").val();
+        })
+
+        $("#Signature").on("change", function () {
+            var output = document.getElementById('SignaturePreview');
+            output.src = $(this).val();
+        })
+
+        //Seal
+
+        $(document).ready(function () {
+            var output = document.getElementById('SealPreview');
+            output.src = $("#Seal").val();
+        })
+
+        $("#Seal").on("change", function () {
+            var output = document.getElementById('SealPreview');
+            output.src = $(this).val();
+        })
+    </script>
+}

@@ -1,0 +1,490 @@
+﻿@model DigitalPrescription
+
+@{
+    ViewData["Title"] = "Digital Prescription Details";
+    //Layout = null;
+}
+
+<head>
+    <link href="~/Background/StyleSheet.css" rel="stylesheet" />
+</head>
+<style>
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+            .tooltip .tooltiptext::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+</style>
+
+<div class="row digital" id="html-content-holder">
+ 
+    <div class="col-md-8 offset-2" style="border-radius:20px;">
+        <div class="row p-5">     </div>
+        <div class="row p-5">     </div>
+        <div class="row p-5">     </div>
+        <div class="card mb-12">
+            <div class="row g-0">
+
+                <div class="col-md-12">
+                    <div class="card-header text-white" style="background-color:aquamarine">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @Model.PatientName
+                                    </h5>
+                                </p>
+
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @Model.ExpirationDate
+                                    </h5>
+                                </p>
+
+
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <p class="card-text " style="text-align:center">
+                                    <b>Digital Prescription Status: </b>
+                                    @if (DateTime.Now >= Model.Dateofissue && DateTime.Now <= Model.ExpirationDate)
+                                    {
+                                        <span class="badge bg-success text-white">AVAILABLE</span>
+                                    }
+                                    else if (DateTime.Now > Model.ExpirationDate)
+                                    {
+                                        <span class="badge bg-danger text-white">EXPIRED</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-primary text-white">UPCOMING</span>
+                                    }
+                                </p>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <div class="col-md-6">
+                        <div class="card-body">
+
+                            <p class="card-text">
+                                <b>Patient's Name': </b> @Model.PatientName
+
+                            </p>
+                            <p class="card-text">
+                                <b>Patient's Age': </b> @Model.Age
+
+                            </p>
+
+
+                            <p class="card-text">
+                                <b>Type of Drug: </b> @Model.DrugProductCategory
+
+                            </p>
+
+                        </div>
+
+                    </div>
+                }
+                @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                {
+                    <div class="col-md-6">
+                        <div class="card-body">
+
+                            <p class="card-text">
+                                <b>Patient's Name': </b> @Model.PatientName
+
+                            </p>
+                            <p class="card-text">
+                                <b>Patient's Age': </b> @Model.Age
+
+                            </p>
+                        
+
+                        </div>
+
+                    </div>
+                }
+
+                <div class="col-md-6">
+                    <div class="card-body">
+
+
+                        <p class="card-text">
+                            <b>Patient's Address': </b> @Model.PatientAddress
+
+                        </p>
+                        <p class="card-text">
+                            <b>Patient's Birthday': </b> @Model.BirthDay.ToString("dd MM yy")
+
+                        </p>
+                        <p class="card-text">
+                            <b>Period of Meal: </b> @Model.Mealperiod
+
+                        </p>
+                        <p class="card-text">
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                            {
+                                <b>
+                                    Delivery Location:
+                                </b> <a href="https://www.google.com/maps/search/?api=1&query= @Model.Lattiude%2C @Model.Longtitude">Navigate to the Location</a>
+                            }
+                            @*<div>
+
+                    <input type="text" value=" https://www.google.com/maps/search/?api=1&query= @Model.Lattiude.ToString()%2C @Model.Longtitude.ToString()" id="myInput" />
+
+                    <div class="tooltip">
+                        <button onclick="myFunction()" onmouseout="outFunc()">
+                            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                            Copy text
+                        </button>
+                    </div>
+                        </div>*@
+
+                            @*<div>
+                        <article id="content-copy">
+                            https://www.google.com/maps/search/?api=1&query= @Model.Lattiude.ToString()%2C @Model.Longtitude.ToString()
+                        </article>
+
+                        <button id="btn-copy">Copy</button>
+                    </div>*@
+
+
+
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Pharmacist"))
+                            {
+                                <textarea id="myInput"> https://www.google.com/maps/search/?api=1&query= @Model.Lattiude.ToString()%2C @Model.Longtitude.ToString()</textarea>
+                                <button onclick="myFunction()">Copy text</button>
+
+                                <script>
+                                    function myFunction() {
+                                        // Get the text field
+                                        var copyText = document.getElementById("myInput");
+
+                                        // Select the text field
+                                        copyText.select();
+                                        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                                        // Copy the text inside the text field
+                                        navigator.clipboard.writeText(copyText.value);
+
+                                        // Alert the copied text
+                                        alert("Copied the text: " + copyText.value);
+                                    }
+                                </script>
+
+                            }
+                        </p>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <div class="card-body">
+
+                        <p class="card-text">
+                            <b>Patient's Issue': </b> @Model.Description
+
+                        </p>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text"><b>Start Date: </b>@Model.Dateofissue.ToString("dd MMM yy")</p>
+                        <div>
+                            <img src="@Model.Signature" style="max-width:150px" alt="@Model.DoctorId">
+                        </div>
+                        <p class="card-text">
+                            <b>Doctor's Signature</b>
+
+                        </p>
+                        <p class="card-text">
+                            <b>Doctor : </b>
+                            <a asp-controller="Doctors" asp-action="Details" asp-route-id="@Model.DoctorId">
+                                @Model.Doctor.FullName
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text"><b>Date of Expire: </b>@Model.ExpirationDate.ToString("dd MMM yy")</p>
+                        <div>
+                            <img src="@Model.Seal" style="max-width:150px" alt="@Model.DoctorId">
+                        </div>
+                        <p class="card-text">
+                            <b>Doctor's Seal</b>
+
+                        </p>
+                        <p class="card-text">
+                            <b>Digital Prescription Issued Date </b> @Model.Dateofissue
+
+                        </p>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <center>
+        <table border="0" width="80%" cellpadding="20">
+            <tr>
+                <td style="text-align:center;">
+                    <a class="btn btn-outline-primary" asp-action="Index">
+                        Back to List
+                    </a>
+                    <br />
+
+                </td>
+
+                <td style="text-align:center;">
+                    <a class="btn btn-success text-white">
+                        <i class="bi bi-cart-plus"></i>
+                        Add to Cart
+                    </a>
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    <input class="btn btn-primary" id="btn-Preview-Image" type="button" value="Confirm Download" />
+                </td>
+
+                <td style="text-align:center;">
+                    <center>
+                        <a class="btn btn-success" id="btn-Convert-Html2Image">Download Prescription</a>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    <a style="background-color:mediumpurple" asp-action="FindPharmacy" asp-controller="Pharmacies" class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Find the nearest Pharmacy</a>
+                </td>
+
+                <td style="text-align:center;">
+                    <a style="background-color:mediumpurple" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Send to Pharmacy</a>
+                </td>
+            </tr>
+        </table>
+    </center>
+</div>
+<!--<div class="col-md-12">
+    <div class="card-footer">
+        <p class="card-text">
+            <div class="row">
+
+
+
+                <div class="col-md-3 ">
+                    <a class="btn btn-outline-primary float-right" asp-action="Index">
+                        Back to List
+                    </a>
+
+                </div>
+
+                <div class="col-md-3">
+                    <input class="btn btn-primary" id="btn-Preview-Image" type="button" value="Confirm Download" />
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-success" id="btn-Convert-Html2Image">Download Prescription</a>
+                </div>-->
+                @*<div class="col-md-3">
+                    <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Add to Cart</a>
+                </div>*@
+
+
+
+
+
+            <!--</div>
+            <div class="row">
+                <br /><br /><br />
+                <div class="col-md-12">
+                    <center>
+                        <a style="background-color:mediumpurple" asp-action="FindPharmacy" asp-controller="Pharmacies" class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Find the nearest Pharmacy</a>
+                    </center>
+
+                </div>
+
+                <div class="col-md-12">
+                    <center>
+                        <a style="background-color:mediumpurple" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Send to Pharmacy</a>
+                    </center>
+
+                </div>
+            </div>-->
+
+            @*<a class="btn btn-primary" asp-action="Downloaddetails" asp-controller="DigitalPrescriptions">Download Prescri</a>*@
+
+        <!--</p>
+    </div>
+</div>-->
+
+@*<div class="col-md-4">
+        <img src="@Model.ImageURL" width="100%" alt="@Model.Name">
+    </div>*@
+
+
+
+@section Scripts{
+    <script src="~/HomePageTheme/lib/jquery/dist/jquery.js"></script>
+    <script src="~/HomePageTheme/lib/jquery/dist/html2canvas.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+
+            var element = $("#html-content-holder"); // global variable
+            var getCanvas; // global variable
+
+            $("#btn-Preview-Image").on('click', function () {
+                html2canvas(element, {
+                    onrendered: function (canvas) {
+                        $("#previewImage").append(canvas);
+                        getCanvas = canvas;
+                    }
+                });
+            });
+
+            $("#btn-Convert-Html2Image").on('click', function () {
+                var imgageData = getCanvas.toDataURL("image/png");
+                // Now browser starts downloading it instead of just showing it
+                var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                $("#btn-Convert-Html2Image").attr("download", "MyPrescription.png").attr("href", newData);
+            });
+
+        });
+
+
+
+        function myFunction() {
+            var copyText = document.getElementById("myInput");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value);
+
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copied: " + copyText.value;
+        }
+
+        function outFunc() {
+            var tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copy to clipboard";
+        }
+        //2nd Button
+
+
+
+        const copyButton = document.getElementById("btn-copy");
+        const pasteButton = document.getElementById("btn-paste");
+
+        const pasteArticle = document.getElementById('content-paste');
+
+
+        // execCommand -- deprecated
+        // use clipboard api moving forward
+        copyButton.addEventListener("click", async function (event) {
+            const content = document.getElementById('content-copy').textContent;
+            await navigator.clipboard.writeText(content);
+            console.log(await navigator.clipboard.readText());
+        });
+
+        pasteButton.addEventListener('click', async function (event) {
+            // clear paste article
+            pasteArticle.textContent = '';
+            try {
+                // this will return an array of clipboard item
+                const data = await navigator.clipboard.read();
+
+                // check if img
+                const clipboardContent = data[0];
+
+                console.log(clipboardContent);
+
+                // blob is a data format that represent a large binary file
+                // eg pdf, img and etc
+                const blob = await clipboardContent.getType('image/png');
+                // retrieve the blob url so we can pass into image element
+                const blobUri = window.URL.createObjectURL(blob);
+                const img = document.createElement('img');
+                img.src = blobUri;
+                pasteArticle.appendChild(img);
+            } catch (err) {
+                console.log(err);
+                // if there is an error, that means there is no image
+                const text = await navigator.clipboard.readText();
+                pasteArticle.textContent = text;
+            }
+
+
+
+        })
+
+
+    </script>
+
+}

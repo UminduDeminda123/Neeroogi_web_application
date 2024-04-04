@@ -1,0 +1,270 @@
+﻿@model NewPharmacyVM
+@{
+    ViewData["Title"] = "Create a New Pharmacy Account";
+}
+<head>
+    <link href="~/Background/StyleSheet.css" rel="stylesheet" />
+</head>
+<div class="row pha">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Create a New Pharmacy Account</h4>
+        </p>
+
+        <div class="card mb-12">
+            <div class="row g-0">
+
+
+
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <div class="row">
+                            <p>
+                                <h4>New Pharmacy</h4>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="PharmacyName" class="control-label"></label>
+                                    <input asp-for="PharmacyName" class="form-control" />
+                                    <span asp-validation-for="PharmacyName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="LocatedNearestCity" class="control-label"></label>
+                                    <input asp-for="LocatedNearestCity" class="form-control" />
+                                    <span asp-validation-for="LocatedNearestCity" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="WhatsAppNumber" class="control-label"></label>
+                                    <input asp-for="WhatsAppNumber" class="form-control" />
+                                    <span asp-validation-for="WhatsAppNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="OwnerFirstName" class="control-label"></label>
+                                    <input asp-for="OwnerFirstName" class="form-control" />
+                                    <span asp-validation-for="OwnerFirstName" class="text-danger"></span>
+                                </div>
+                                <!--<div class="form-group">
+    <label asp-for="DrugProductCategory" class="control-label"></label>
+    <select asp-for="DrugProductCategory" class="form-control"></select>-->
+                                @*<select asp-for="DrugProductCategory" class="form-control" asp-items="Html.GetEnumSelectList<DrugProductCategory>"></select>*@
+                                <!--<span asp-validation-for="DrugProductCategory" class="text-danger"></span>
+    </div>-->
+                                <div class="form-group">
+                                    <label asp-for="OwnerFullName" class="control-label"></label>
+                                    <input asp-for="OwnerFullName" class="form-control" />
+                                    <span asp-validation-for="OwnerFullName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="ContactNumber" class="control-label"></label>
+                                    <input asp-for="ContactNumber" class="form-control" />
+                                    <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="PharmacyRegisteredNumber" class="control-label"></label>
+                                    <input asp-for="PharmacyRegisteredNumber" class="form-control" />
+                                    <span asp-validation-for="PharmacyRegisteredNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="OwnerLastName" class="control-label"></label>
+                                    <input asp-for="OwnerLastName" class="form-control" />
+                                    <span asp-validation-for="OwnerLastName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="OwnersNIC" class="control-label"></label>
+                                    <input asp-for="OwnersNIC" class="form-control" />
+                                    <span asp-validation-for="OwnersNIC" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="EmergencyContactNumber" class="control-label"></label>
+                                    <input asp-for="EmergencyContactNumber" class="form-control" />
+                                    <span asp-validation-for="EmergencyContactNumber" class="text-danger"></span>
+                                </div>
+                                
+
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Description" class="control-label"></label>
+                                    <input asp-for="Description" class="form-control" />
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="PharmacyAddress" class="control-label"></label>
+                                    <input asp-for="PharmacyAddress"  class="form-control" />
+                                    <span asp-validation-for="PharmacyAddress" class="text-danger"></span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <img class="border-info rounded-circle" style="max-width:150px" id="LogoPicturePreview" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Logo" class="control-label"></label>
+                                    <textarea asp-for="Logo" class="form-control"></textarea>
+                                    <span asp-validation-for="Logo" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="GeoCoordinatesGoogleLocation" class="control-label"></label>
+                                    <input asp-for="GeoCoordinatesGoogleLocation" class="form-control"/>
+                                    <span asp-validation-for="GeoCoordinatesGoogleLocation" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group text-center">
+                                    <img class="border-info rounded-circle" style="max-width:150px" id="OwnerIDPicturePreview" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="OwnerIdpicturefrontURL" class="control-label"></label>
+                                    <input asp-for="OwnerIdpicturefrontURL" class="form-control" />
+                                    <span asp-validation-for="OwnerIdpicturefrontURL" class="text-danger"></span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <img class="border-info rounded-circle" style="max-width:150px" id="PharmacyRegistrationCertificatePicturePreview" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="PharmacyRegistrationCertificatePicture" class="control-label"></label>
+                                    <input asp-for="PharmacyRegistrationCertificatePicture" class="form-control" />
+                                    <span asp-validation-for="PharmacyRegistrationCertificatePicture" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="DoctorIds" class="control-label"></label>
+                                    @*<select asp-for="PharmacyIds" class="form-control" multiple></select>*@
+                                    <select asp-for="DoctorIds" class="form-control" asp-items="ViewBag.Doctors"></select>
+                                    <span asp-validation-for="DoctorIds" class="text-danger"></span>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group text-center">
+                                    <img class="border-info rounded-circle" style="max-width:150px" id="OwnerIDPictureBackPreview" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="OwnerIdpicturebackURL" class="control-label"></label>
+                                    <input asp-for="OwnerIdpicturebackURL" class="form-control" />
+                                    <span asp-validation-for="OwnerIdpicturebackURL" class="text-danger"></span>
+                                </div>
+                                <div class="form-group text-center">
+                                    <img class="border-info rounded-circle" style="max-width:150px" id="OwnersLicenseIDPicturePreview" />
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="OwnersLicenseIDPicture" class="control-label"></label>
+                                    <input asp-for="OwnersLicenseIDPicture" class="form-control" />
+                                    <span asp-validation-for="OwnersLicenseIDPicture" class="text-danger"></span>
+                                </div>
+                               
+                                <div class="form-group">
+                                    <label asp-for="DeliveryPersonIds" class="control-label"></label>
+                                    @*<select asp-for="PharmacyIds" class="form-control" multiple></select>*@
+                                    <select asp-for="DeliveryPersonIds" class="form-control" asp-items="ViewBag.DeliveryPersons"></select>
+                                    <span asp-validation-for="DeliveryPersonIds" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                            <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+  
+        //ID Picture Front
+
+        $(document).ready(function () {
+            var output = document.getElementById('OwnerIDPicturePreview');
+            output.src = $("#OwnerIdpicturefrontURL").val();
+        })
+
+        $("#OwnerIdpicturefrontURL").on("change", function () {
+            var output = document.getElementById('OwnerIDPicturePreview');
+            output.src = $(this).val();
+        })
+
+        //ID Picture Back
+
+        $(document).ready(function () {
+            var output = document.getElementById('OwnerIDPictureBackPreview');
+            output.src = $("#OwnerIdpicturebackURL").val();
+        })
+
+        $("#OwnerIdpicturebackURL").on("change", function () {
+            var output = document.getElementById('OwnerIDPictureBackPreview');
+            output.src = $(this).val();
+        })
+
+        //Registration Certificate 
+
+        $(document).ready(function () {
+            var output = document.getElementById('PharmacyRegistrationCertificatePicturePreview');
+            output.src = $("#PharmacyRegistrationCertificatePicture").val();
+        })
+
+        $("#PharmacyRegistrationCertificatePicture").on("change", function () {
+            var output = document.getElementById('PharmacyRegistrationCertificatePicturePreview');
+            output.src = $(this).val();
+        })
+
+        //Owner's License 
+
+        $(document).ready(function () {
+            var output = document.getElementById('OwnersLicenseIDPicturePreview');
+            output.src = $("#OwnersLicenseIDPicture").val();
+        })
+
+        $("#OwnersLicenseIDPicture").on("change", function () {
+            var output = document.getElementById('OwnersLicenseIDPicturePreview');
+            output.src = $(this).val();
+        })
+
+        //Logo Picture Preview 
+
+        $(document).ready(function () {
+            var output = document.getElementById('LogoPicturePreview');
+            output.src = $("#Logo").val();
+        })
+
+        $("#Logo").on("change", function () {
+            var output = document.getElementById('LogoPicturePreview');
+            output.src = $(this).val();
+        })
+    </script>
+}

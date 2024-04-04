@@ -1,0 +1,235 @@
+﻿@model List<DigitalPrescription>
+@inject UserManager<ApplicationUser> UserManager;
+@{
+    ViewData["Title"] = "Issued Digital Prescriptions";
+}
+
+<style>
+    /*#cardbackground {
+        background-color: #CCFFCC;
+    }*/
+
+    #cardbackgroundinner {
+        /* background-color: #00CC00*/
+    }
+</style>
+<head>
+    <link href="~/Background/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<div class="digital">
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+    {
+        <center>
+            <h4>Welcome ! You can find your Prescriptions here.....</h4>
+            @*<h6><i>Please enter your email ID correctly into the Field Below</i> </h6>*@
+            <div class="col-md-4 col-xs-6 border-primary mb-3 " id="cardbackground">
+                <div class="card-mb-3" style="max-width: 600px;">
+                    <div class="row g-0" id="cardbackgroundinner">
+                        <div class="col-md-12">
+                            <div class="card-header text-white" style="background-color: #7919ff">
+                                <h6 style="color:white">Please enter your email ID correctly into the Field Below</h6>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col md-12">
+                            <div class="card-body" style="background-color: #9142ff" @*style="text-align:left"*@>
+                                <form class="form-inline my-2 my-lg-0" asp-controller="DigitalPrescriptions" asp-action="Filter" style="padding-right: 25px;">
+                                    <div class="col-md-6">
+
+                                        <input name="searchString" type="text" class="form-control" placeholder="Search for your Digital Presc..." aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <button class="btn btn-success my-2 my-sm-0" type="submit">Find My Prescription<i class="bi bi-eye"></i></button>
+
+                                    </div>
+
+                                </form>
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            Total Received Digital Prescriptions : @ViewBag.DigitalPresCount
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </center>
+
+    }
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Pharmacist"))
+    {
+        <center>
+            <h4>Welcome ! You can see all the Prescriptions of Confirmed Orders here</h4>
+            @*<h6><i>Please enter your email ID correctly into the Field Below</i> </h6>*@
+            <div class="col-md-4 col-xs-6 border-primary mb-3 " id="cardbackground">
+                <div class="card-mb-3" style="max-width: 600px;">
+                    <div class="row g-0" id="cardbackgroundinner">
+                        <div class="col-md-12">
+                            <div class="card-header text-white" style="background-color: #7919ff">
+                                <h6 style="color:white">Please enter your email ID correctly into the Field Below</h6>
+
+                            </div>
+
+
+                        </div>
+                        <div class="col md-12">
+                            <div class="card-body" style="background-color: #9142ff" @*style="text-align:left"*@>
+                                <form class="form-inline my-2 my-lg-0" asp-controller="DigitalPrescriptions" asp-action="ReceivedOrders" style="padding-right: 25px;">
+                                    <div class="col-md-6">
+
+                                        <input name="searchString" type="text" class="form-control" placeholder="Search for Confirmed Orders" aria-label="Recipient's username" aria-describedby="button-addon2">
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <button class="btn btn-success my-2 my-sm-0" type="submit">M<i class="bi bi-eye"></i></button>
+
+                                    </div>
+                                    <div>
+                                        <h3>Count :  @ViewBag.Count</h3>
+                                    </div>
+                                </form>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </center>
+
+    }
+    <div class="row ">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-xs-6 border-primary mb-3 " id="cardbackground">
+                <div class="card-mb-3" style="max-width: 540px;">
+                    <div class="row g-0" id="cardbackgroundinner">
+                        <div class="col-md-12">
+                            <div class="card-header text-white bg-secondary">
+
+
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @item.PatientName
+
+                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                                    </h5>
+                                </p>
+                            </div>
+                        </div>
+
+                        @*<div class="col md-12">
+                                <center>
+                                    <img class="rounded-circle" src="@item.ProfilePictureURL" style="height:250px;width:250px;" alt="@item.FullName" />
+                                </center>
+
+                            </div>*@
+                        <div class="col md-6">
+                            <div class="card-body" @*style="text-align:left"*@>
+
+                                <p class="card-text"><b>Customer Name   :</b></p>
+                                <p class="card-text"><b>Date of Issue  :</b></p>
+                                <p class="card-text"><b>Digi.Pres. No :</b></p>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col md-6">
+                            <div class="card-body" @*style="text-align:right"*@>
+
+                                <p><b>@item.PatientName</b></p>
+                                <p><b>@item.Dateofissue</b></p>
+                                <p><b>@item.Id</b></p>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="card-footer">
+
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    <a class="btn btn-outline-danger float-right" asp-action="Delete" asp-route-id="@item.Id">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </a>
+                                    <a class="btn btn-outline-success float-left" asp-action="Edit" asp-route-id="@item.Id">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+
+                                    <center>
+                                        <a class="btn btn-outline-primary float-none" asp-action="Details" asp-route-id="@item.Id">
+                                            <i class="bi bi-eye"></i> Show Details
+                                        </a>
+
+                                    </center>
+                                }
+
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Doctor"))
+                                {
+                                    <center>
+                                        <a class="btn btn-outline-primary float-none" asp-action="Details" asp-route-id="@item.Id">
+                                            <i class="bi bi-eye"></i> Show Details
+                                        </a>
+
+                                    </center>
+                                }
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Pharmacist"))
+                                {
+                                    <center>
+                                        <a class="btn btn-outline-primary float-none" asp-action="Details" asp-route-id="@item.Id">
+                                            <i class="bi bi-eye"></i> Show Details
+                                        </a>
+
+                                    </center>
+                                }
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                                {
+
+                                    <center>
+                                        <a class="btn btn-outline-primary float-none" asp-action="Details" asp-route-id="@item.Id">
+                                            <i class="bi bi-eye"></i> Show Details
+                                        </a>
+
+                                    </center>
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+    </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+</div>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Doctor"))
+    {
+        @await Html.PartialAsync("_CreateItem", "DigitalPrescriptions")
+    }
+
+

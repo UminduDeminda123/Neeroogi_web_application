@@ -1,0 +1,124 @@
+﻿@model Notification
+
+@{
+    ViewData["Title"] = "Digital Prescription Details";
+}
+<div class="row p-5">     </div>
+<div class="row p-5">     </div>
+<div class="row p-5">     </div>
+<div class="row">
+    <div class="col-md-8 offset-2">
+
+        <div class="card mb-12">
+            <div class="row g-0">
+
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @Model.Type
+                                    </h5>
+                                </p>
+
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @Model.NotiDate
+                                    </h5>
+                                </p>
+
+
+
+                            </div>
+
+                            @*<div class="col-md-12">
+                                    <p class="card-text " style="text-align:center">
+                                        <b>Digital Prescription Status: </b>
+                                        @if (DateTime.Now >= Model.Dateofissue && DateTime.Now <= Model.ExpirationDate)
+                                        {
+                                            <span class="badge bg-success text-white">AVAILABLE</span>
+                                        }
+                                        else if (DateTime.Now > Model.ExpirationDate)
+                                        {
+                                            <span class="badge bg-danger text-white">EXPIRED</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-primary text-white">UPCOMING</span>
+                                        }
+                                    </p>
+                                </div>*@
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card-body">
+
+                        <p class="card-text">
+                            <b>Notification Type: </b> @Model.Type
+
+                        </p>
+                        <p class="card-text">
+                            <b>Notification Date: </b> @Model.NotiDate
+
+                        </p>
+
+                        <p class="card-text">
+                            <b>Notification : </b> @Model.NotiDescription
+
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <div class="card-footer">
+
+
+                        <div class="form-group">
+                            @*<input type="submit" value="Create" class="btn btn-outline-success float-right"  />*@
+                            <form asp-action="Delete">
+                                <input type="hidden" asp-for="Id" />
+                                <input type="submit" value="Confirm" class="btn btn-danger float-right" />
+                            </form>
+
+                            <a class="btn btn-outline-secondary" asp-controller="Notification" asp-action="Index">Show All</a>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

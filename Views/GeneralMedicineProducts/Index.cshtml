@@ -1,0 +1,99 @@
+﻿@model IEnumerable<GeneralMedicines>
+@{
+    ViewData["Title"] = "Our General Medicine Products";
+}
+<style>
+    /*#cardbackground {
+        background-color: #CCFFCC;
+    }*/
+
+    #cardbackgroundinner {
+        /* background-color: #00CC00*/
+    }
+</style>
+
+<div class="row ">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3 " id="cardbackground">
+            <div class="card-mb-3" style="max-width: 600px;">
+                <div class="row g-0" id="cardbackgroundinner">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    The @item.Name
+
+                                    <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col md-12">
+                        <center>
+                            <img class="rounded-circle" src="@item.ProductPictureURL" style="height:250px;width:250px;" alt="@item.Name" />
+                        </center>
+
+                    </div>
+                    <div class="col md-6">
+                        <div class="card-body" @*style="text-align:left"*@>
+
+                            <p class="card-text"><b>Product Name   :</b></p>
+                            <p class="card-text"><b>Manufactured Company   :</b></p>
+                            <p class="card-text"><b>Manufactured Date :</b></p>
+                            <p class="card-text"><b>Expiration Date :</b></p>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col md-6">
+                        <div class="card-body" @*style="text-align:right"*@>
+
+                            <p><b>@item.Name</b></p>
+                            <p><b>@item.ManufacturedCompanyName</b></p>
+                            <p><b>@item.ManufacturedDate</b></p>
+                            <p><b>@item.ExpirationDate</b></p>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="card-footer">
+
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+
+                                <a class="btn btn-outline-danger float-right" asp-action="Delete" asp-route-id="@item.Id">
+                                    <i class="bi bi-trash"></i> Delete
+                                </a>
+                                <a class="btn btn-outline-success float-left" asp-action="Edit" asp-route-id="@item.Id">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <center>
+                                    <a class="btn btn-outline-primary float-none" asp-action="Details" asp-route-id="@item.Id">
+                                        <i class="bi bi-eye"></i> Show Details
+                                    </a>
+
+                                </center>
+                            }
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>
+@*<div style="position:fixed; right:25px;bottom:25px;" class="text-white">
+        <a asp-controller="GeneralMedicineProducts" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i>Add</a>
+    </div>*@
+
+@await Html.PartialAsync("_CreateItem", "GeneralMedicineProducts")

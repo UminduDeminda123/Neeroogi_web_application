@@ -1,0 +1,118 @@
+﻿@model GeneralMedicines
+@{ ViewData["Title"] = "Delete the Product"; }
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>Delete the Product @Model.Name</h4>
+        </p>
+
+        <div class="card" style="width: auto;">
+            <div class="text-center">
+                <img class="card-img-top border-info rounded-circle " style="height:250px;width:250px;" src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZHJ1Z3N8ZW58MHx8MHx8&w=1000&q=80" alt="Card image cap">
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8 offset-2">
+                      
+
+                            <div class="form-group text-center">
+                                <img class="border-info rounded-circle" style="max-width:150px" id="ProductPicturePreview" />
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="ProductPictureURL" class="control-label"></label>
+                                <textarea asp-for="ProductPictureURL" class="form-control"></textarea>
+                                <span asp-validation-for="ProductPictureURL" class="text-danger"></span>
+                            </div>
+                            <!--Adding a Row-->
+                            <div class="row">
+                                <!--Adding details to display on left side of the form-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label"></label>
+                                        <input asp-for="Name" class="form-control" readonly />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="ManufacturedDate" class="control-label"></label>
+                                        <input asp-for="ManufacturedDate" class="form-control" readonly />
+
+                                        <span asp-validation-for="ManufacturedDate" class="text-danger"></span>
+                                    </div>
+
+
+                                </div>
+                                <!--Adding details to display on right side of the form-->
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="ManufacturedCompanyName" class="control-label"></label>
+                                        <input asp-for="ManufacturedCompanyName" class="form-control" readonly />
+
+                                        <span asp-validation-for="ManufacturedCompanyName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ExpirationDate" class="control-label"></label>
+                                        <input asp-for="ExpirationDate" class="form-control" readonly />
+
+                                        <span asp-validation-for="ExpirationDate" class="text-danger"></span>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-12">
+
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @*<input type="submit" value="Create" class="btn btn-outline-success float-right"  />*@
+                                <form asp-action="Delete">
+                                    <input type="hidden" asp-for="Id" />
+                                    <input type="submit" value="Confirm" class="btn btn-danger float-right" />
+                                </form>
+
+                                <a class="btn btn-outline-secondary" asp-controller="Doctors" asp-action="Index">Show All</a>
+                            </div>
+                       
+
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+
+
+        //Product Picture
+
+        $(document).ready(function () {
+            var output = document.getElementById('ProductPicturePreview');
+            output.src = $("#ProductPictureURL").val();
+        })
+
+
+        $("#ProductPictureURL").on("change", function () {
+            var output = document.getElementById('ProductPicturePreview');
+            output.src = $(this).val();
+        })
+       
+
+
+    </script>
+}

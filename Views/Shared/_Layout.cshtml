@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- SITE TITTLE -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NeerogiLK</title>
+
+    <!-- PLUGINS CSS STYLE -->
+    <!-- Bootstrap -->
+    <!-- CSS only -->
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="~/HomePageTheme/style1/plugins/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/HomePageTheme//style1/plugins/bootstrap/bootstrap.min.js" rel="stylesheet" />
+    <!--meterial card bootsatrp-->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- themify icon -->
+    <link rel="stylesheet" href="~/HomePageTheme/style1/plugins/themify-icons/themify-icons.css">
+    <!-- Slick Carousel -->
+    <link href="~/HomePageTheme/style1/plugins/slick/slick.css" rel="stylesheet">
+    <!-- Slick Carousel Theme -->
+    <link href="~/HomePageTheme/style1/plugins/slick/slick-theme.css" rel="stylesheet">
+
+    <!-- CUSTOM CSS -->
+    <link href="~/HomePageTheme/css/style.css" rel="stylesheet">
+    @*<link href="~/HomePageTheme/css/StyleSheet1.css" rel="stylesheet" />*@
+    <!-- FAVICON -->
+    <link href="~/HomePageTheme/style1/images/" rel="shortcut icon">
+    <link rel="icon" type="image/png" href="~/logoimages/1.png" />
+
+    <style>
+        html, body {
+            overflow-x: hidden;
+        }
+    </style>
+
+</head>
+
+<body class="body-wrapper col-sm-12 col-xs-12">
+
+    <div class="row p-5">     </div>
+    @*<div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>*@
+
+    <nav style="width:100%" class="navbar fixed-top main-nav navbar-expand-lg large ">
+        @*main-nav fixed-top navbar-expand-lg large*@
+        @*<div class="container">*@
+
+            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><img src="~/logoimages/1.png" style="width:200px;height:125px" /></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="ti-menu text-white"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link scrollTo">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrollTo">About</a>
+                    </li>
+                    @*<li class="nav-item">
+                        <a class="nav-link scrollTo" href="#feature">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrollTo" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrollTo" href="#team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link scrollTo" href="#contact">Contact</a>
+                    </li>*@
+                    <li class="nav-item">
+                        <a class="nav-link scrollTo" href="https://dev-neerogilk.pantheonsite.io/">General Medicine </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Doctors" asp-action="Index">Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Pharmacies" asp-action="Index">Pharmacies</a>
+                    </li>
+                    @*<li>
+            <i class="fas fa-envelope fa-2x"></i><a class="link"></a> <span class="counter counter-lg">29</span>&nbsp;&nbsp;
+        </li>*@
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                    {
+                        <li>
+                            <a asp-controller="Notification" asp-action="Index">
+                                @*<i class="fas fa-envelope fa-lg"></i>*@
+                                <span class="badge rounded-pill badge-notification bg-danger">@ViewBag.NotificationCount</span>
+                                <i style="font-size:24px" class="fa">&#xf0f3;</i>
+                                @*<span class="badge rounded-pill badge-notification bg-danger">1</span>*@
+                            </a>
+                        </li>
+
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Doctor"))
+                    {
+                        <li>
+                            <a asp-controller="Notification" asp-action="Index">
+                                @*<i class="fas fa-envelope fa-lg"></i>*@
+                                <span class="badge rounded-pill badge-notification bg-danger">@ViewBag.NotificationCount</span>
+                                <i style="font-size:24px" class="fa">&#xf0f3;</i>
+                                @*<span class="badge rounded-pill badge-notification bg-danger">1</span>*@
+                            </a>
+                        </li>
+
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Pharmacist"))
+                    {
+                        <li>
+                            <a asp-controller="Notification" asp-action="Index">
+                                @*<i class="fas fa-envelope fa-lg"></i>*@
+                                <span class="badge rounded-pill badge-notification bg-danger">@ViewBag.NotificationCount</span>
+                                <i style="font-size:24px" class="fa">&#xf0f3;</i>
+                                @*<span class="badge rounded-pill badge-notification bg-danger">1</span>*@
+                            </a>
+                        </li>
+
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li>
+                            <a asp-controller="Notification" asp-action="Index">
+                                @*<i class="fas fa-envelope fa-lg"></i>*@
+                                <span class="badge rounded-pill badge-notification bg-danger">@ViewBag.NotificationCount</span>
+                                <i style="font-size:24px" class="fa">&#xf0f3;</i>
+                                @*<span class="badge rounded-pill badge-notification bg-danger">1</span>*@
+                            </a>
+                        </li>
+
+                    }
+
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-gear"></i> Management
+                            </a>
+
+                            <div class="dropdown-menu dropdown" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item dropdown1" asp-controller="Doctors" asp-action="Index"><i class="bi bi-camera-reels"></i> Doctors</a>
+                                <a class="dropdown-item dropdown1" asp-controller="GeneralMedicineProducts" asp-action="Index"><i class="bi bi-headset"></i> General Medicine Products</a>
+                                <a class="dropdown-item dropdown1" asp-controller="DeliveryPersons" asp-action="Index"><i class="bi bi-person-square"></i> Delivery Persons</a>
+                                <a class="dropdown-item dropdown1" asp-controller="Pharmacies" asp-action="Index"><i class="bi bi-person-square"></i> Pharmacies</a>
+                                <a class="dropdown-item dropdown1" asp-controller="DigitalPrescriptions" asp-action="Index"><i class="bi bi-person-square"></i> Issued Digital Prescriptions</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bi bi-gear"></i> Registration
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item dropdown1" asp-controller="DoctorAccount" asp-action="Register"><i class="bi bi-camera-reels"></i> Register a Doctor</a>
+                                <a class="dropdown-item dropdown1" asp-controller="DeliveryPersonAccount" asp-action="Register"><i class="bi bi-headset"></i> Register a Delivery Person</a>
+                                <a class="dropdown-item dropdown1" asp-controller="PharmacyAccount" asp-action="Register"><i class="bi bi-person-square"></i> Register a Pharmacy</a>
+                            </div>
+                        </li>
+
+
+                    }
+                    @*<li>*@
+                    @*<partial name="_Identity.cshtml" />*@
+                    @*</li>*@
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Doctor"))
+                    {
+                        <li class="nav-item">
+                            <a class="dropdown-item dropdown1" asp-controller="DigitalPrescriptions" asp-action="Index"><i class="bi bi-person-square"></i> Issued Digital Prescriptions</a>
+                        </li>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                    {
+                        <li class="nav-item">
+                            <a class="dropdown-item dropdown1" asp-controller="DigitalPrescriptions" asp-action="Index"><i class="bi bi-person-square"></i>My Prescriptions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item dropdown1" asp-controller="Orders" asp-action="Index"><i class="bi bi-person-square"></i>Confirmed Orders</a>
+                        </li>
+                    }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Pharmacist"))
+                    {
+                        <li class="nav-item">
+                            <a class="dropdown-item dropdown1" asp-controller="DigitalPrescriptions" asp-action="Index"><i class="bi bi-person-square"></i>Confirmed Orders</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="dropdown-item dropdown1" asp-controller="Orders" asp-action="Index"><i class="bi bi-person-square"></i>My Invoice</a>
+                        </li>
+                    }
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("DeliveryPerson"))
+                    {
+                        <li class="nav-item">
+                            <a class="dropdown-item dropdown1" asp-controller="Orders" asp-action="Index"><i class="bi bi-person-square"></i>My Orders</a>
+                        </li>
+
+                        @*<li class="nav-item">
+                <a class="dropdown-item dropdown1" asp-controller="Orders" asp-action="Index"><i class="bi bi-person-square"></i>My Invoice</a>
+            </li>*@
+                    }
+
+                    @*<partial name="_Identity.cshtml" />*@
+
+                </ul>
+
+                <partial name="_Identity.cshtml" />
+
+                @*<partial name="_Identity.cshtml" />*@
+
+                @* Update *@
+
+
+            </div>
+        @*</div>*@
+    </nav>
+    @RenderBody()
+    <!--============================
+    =            Footer            =
+    =============================-->
+    @*<div class="row p-5">     </div>
+    <div class="row p-5">     </div>*@
+
+    <footer class="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mr-auto">
+                    <div class="footer-logo">
+                        <a class="navbar-brand" asp-action="Index" asp-controller="Home"><img src="~/logoimages/1.png" style="width:200px;height:125px" /></a>
+                    </div>
+                    <div class="copyright">
+                        <p>
+                            2022 NeerogilLK All Rights Reserved | Design and Developed By : NeerogiLK Developer Team from Victoria University, Australia
+                            
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-lg-right">
+                    <!-- Social Icons -->
+                    <ul class="social-icons list-inline">
+                        <li class="list-inline-item">
+                            <a target="_blank" href="https://facebook.com/themefisher"><i class="text-primary ti-facebook"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a target="_blank" href="https://twitter.com/themefisher"><i class="text-primary ti-twitter-alt"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a target="_blank" href="https://github.com/themefisher"><i class="text-primary ti-linkedin"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a target="_blank" href="https://instagram.com/themefisher"><i class="text-primary ti-instagram"></i></a>
+                        </li>
+                    </ul>
+                    <!-- Footer Links -->
+                    <ul class="footer-links list-inline">
+                        <li class="list-inline-item">
+                            <a class="scrollTo" href="#about">ABOUT</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="scrollTo" href="#team">TEAM</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="scrollTo" href="#contact">CONTACT</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPTS -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI14J_PNWVd-m0gnUBkjmhoQyNyd7nllA" async defer></script>
+
+    <script src="~/HomePageTheme/style1/plugins/jquery/jquery.js"></script>
+    <script src="~/HomePageTheme/style1/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="~/HomePageTheme/style1/plugins/slick/slick.min.js"></script>
+    <script src="~/HomePageTheme/style1/js/custom.js"></script>
+
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>*@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

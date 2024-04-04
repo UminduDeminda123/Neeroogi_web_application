@@ -1,0 +1,45 @@
+﻿<html>
+<head>
+
+    <link href="~/HomePageTheme/StyleSheet.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+
+
+
+    <center><h3>Login as </h3></center>
+    <div class="row p-5">     </div>
+    <div class="row">
+
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <center><a asp-controller="Account" asp-action="Login"><img style="width:200px;height:200px" src="~/logoimages/NewImages/1.png" /></a></center>
+            <div> <center><h4>Customer</h4></center></div>
+
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <center><a asp-controller="DoctorAccount" asp-action="Login"><img style="width:200px;height:200px" src="~/logoimages/NewImages/2.png" /></a></center>
+            @*<a asp-controller="DoctorAccount" asp-action="Login"> <img style="width:200px;height:125px" src="~/logoimages/NewFolder/2.png" /></a>*@
+            <div> <center><h4>Doctor</h4></center></div>
+
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <center><a asp-controller="PharmacyAccount" asp-action="Login"> <img style="width:200px;height:200px" src="~/logoimages/NewImages/3.png" /></a></center>
+            <div> <center><h4>Pharmacy</h4></center></div>
+
+        </div>
+        <div class="col-md-3 col-sm-12 col-xs-12">
+            <center><a asp-controller="DeliveryPersonAccount" asp-action="Login"><img style="width:200px;height:200px" src="~/logoimages/NewImages/4.png" /></a></center>
+            <div> <center><h4>Delivery Person</h4></center></div>
+
+        </div>
+
+    </div>
+    <div class="row p-5">     </div>
+    <div class="row p-5">     </div>
+
+
+</body>
+</html>

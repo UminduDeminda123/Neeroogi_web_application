@@ -1,0 +1,287 @@
+﻿@model Pharmacy
+
+@{
+    ViewData["Title"] = "Delete a Pharmacy";
+}
+<head>
+    <link href="~/Background/StyleSheet.css" rel="stylesheet" />
+</head>
+<div class="row pha">
+    <div class="col-md-8 offset-2">
+        <p>Confirmation of Delete a Pharmacy @Model.PharmacyName</p>
+
+        <div class="card mb-12">
+            <div class="row g-0">
+
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div>
+                                    <div>
+                                        <img src="@Model.Logo" style="max-width:150px" alt="@Model.PharmacyName">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @Model.PharmacyName
+                                    </h5>
+                                </p>
+
+
+                            </div>
+                            <div class="col-md-4">
+
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @Model.PharmacyRegisteredNumber
+                                    </h5>
+                                </p>
+
+
+
+                            </div>
+
+                            @*<div class="col-md-12">
+                                    <p class="card-text " style="text-align:center">
+                                        <b>Digital Prescription Status: </b>
+                                        @if (DateTime.Now >= Model.Dateofissue && DateTime.Now <= Model.ExpirationDate)
+                                        {
+                                            <span class="badge bg-success text-white">AVAILABLE</span>
+                                        }
+                                        else if (DateTime.Now > Model.ExpirationDate)
+                                        {
+                                            <span class="badge bg-danger text-white">EXPIRED</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-primary text-white">UPCOMING</span>
+                                        }
+                                    </p>
+                                </div>*@
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card-body">
+
+                            <p class="card-text">
+                                <b>Pharmacy's Name': </b> @Model.PharmacyName
+
+                            </p>
+                            <p class="card-text">
+                                <b>Owner's Full Name': </b> @Model.OwnerFullName
+
+                            </p>
+                            <p class="card-text">
+                                <b>Pharmacy's Registration Number': </b> @Model.PharmacyRegisteredNumber
+
+                            </p>
+
+                            <p class="card-text">
+                                <b>Contact Number: </b> @Model.OwnersNIC
+
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card-body">
+
+                            <p class="card-text">
+                                <b>Pharmacy's Address': </b> @Model.PharmacyAddress
+
+                            </p>
+
+                            <p class="card-text">
+                                <b>Owner's NIC Number: </b> @Model.OwnersNIC
+
+                            </p>
+                            <p class="card-text">
+                                <b>Registration Date of Pharmacy: </b> @Model.RegistrationDate.ToString("dd MMM yy")
+
+                            </p>
+                            <p class="card-text">
+                                <b>Emergency Contact Number': </b> @Model.EmergencyContactNumber
+
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-12">
+                        <div class="card-body">
+
+                            <p class="card-text">
+                                <b>Pharmacy Description: </b> @Model.Description
+
+                            </p>
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text">
+                                <b>Location Coordinates: </b><a href="@Model.GeoCoordinatesGoogleLocation">Click Here</a>
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            @*<p class="card-text"><b>Start Date: </b>@Model.Dateofissue.ToString("dd MMM yy")</p>*@
+                            <div>
+                                <img src="@Model.OwnerIdpicturefrontURL" style="max-width:150px" alt="@Model.PharmacyName">
+                            </div>
+                            <p class="card-text">
+                                <b>Owner's ID Picture Front'</b>
+
+                            </p>
+                            <div>
+                                <img src="@Model.PharmacyRegistrationCertificatePicture" style="max-width:150px" alt="@Model.PharmacyName">
+                            </div>
+                            <p class="card-text">
+                                <b>Pharmacy Registration Certificate</b>
+
+                            </p>
+
+                            @*<p class="card-text">
+                                <b>Authorized Doctors: </b>
+                                <hr />
+                                <div class="row">
+                                    @foreach (var doctor in Model.Doctors_Pharmacies)
+                                    {
+                                        <div class="column text-center">
+                                            <img class="border-info rounded-circle" src="@doctor.Doctor.ProfilePictureURL" style="max-width: 150px" />
+                                            <br />
+                                            <a asp-controller="Doctors" asp-action="Details" asp-route-id="@doctor.DoctorId">@doctor.Doctor.FullName</a>
+                                        </div>
+                                    }
+                                </div>
+                            </p>*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            @*<p class="card-text"><b>Date of Expire: </b>@Model.ExpirationDate.ToString("dd MMM yy")</p>*@
+                            <div>
+                                <img src="@Model.OwnerIdpicturebackURL" style="max-width:150px" alt="@Model.PharmacyName">
+                            </div>
+                            <p class="card-text">
+                                <b>Owner's ID Picture Back'</b>
+
+                            </p>
+                            <div>
+                                <img src="@Model.OwnersLicenseIDPicture" style="max-width:150px" alt="@Model.PharmacyName">
+                            </div>
+                            <p class="card-text">
+                                <b>Owner's License</b>
+
+                            </p>
+                            @*<p class="card-text">
+                                <b>Appointed Delivery Persons: </b>
+                                <hr />
+                                <div class="row">
+                                    @foreach (var deliveryPerson in Model.DeliveryPersons_Pharmacies)
+                                    {
+                                        <div class="column text-center">
+                                            <img class="border-info rounded-circle" src="@deliveryPerson.DeliveryPerson.ProfilePictureURL" style="max-width: 150px" />
+                                            <br />
+                                            <a asp-controller="DeliveryPersons" asp-action="Details" asp-route-id="@deliveryPerson.DeliveryPersonId">@deliveryPerson.DeliveryPerson.FullName</a>
+                                        </div>
+                                    }
+                                </div>
+                            </p>*@
+
+                            @*<p class="card-text">
+                    <b>Digital Prescription Issued Date </b> @Model.Dateofissue
+
+                </p>*@
+
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        @*<input type="submit" value="Create" class="btn btn-outline-success float-right"  />*@
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="Confirm" class="btn btn-danger float-right" />
+                        </form>
+
+                        <a class="btn btn-outline-secondary" asp-controller="Pharmacies" asp-action="Index">Show All</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        //ID Picture Front
+
+        $(document).ready(function () {
+            var output = document.getElementById('OwnerIDPicturePreview');
+            output.src = $("#OwnerIdpicturefrontURL").val();
+        })
+
+    
+
+        //ID Picture Back
+
+        $(document).ready(function () {
+            var output = document.getElementById('OwnerIDPictureBackPreview');
+            output.src = $("#OwnerIdpicturebackURL").val();
+        })
+
+    
+
+        //Registration Certificate
+
+        $(document).ready(function () {
+            var output = document.getElementById('PharmacyRegistrationCertificatePicturePreview');
+            output.src = $("#PharmacyRegistrationCertificatePicture").val();
+        })
+
+
+        //Owner's License
+
+        $(document).ready(function () {
+            var output = document.getElementById('OwnersLicenseIDPicturePreview');
+            output.src = $("#OwnersLicenseIDPicture").val();
+        })
+
+        //Logo Picture Preview
+
+        $(document).ready(function () {
+            var output = document.getElementById('LogoPicturePreview');
+            output.src = $("#Logo").val();
+        })
+
+    </script>
+}
+
+@*<div class="col-md-4">
+        <img src="@Model.ImageURL" width="100%" alt="@Model.Name">
+    </div>*@-->
+
+

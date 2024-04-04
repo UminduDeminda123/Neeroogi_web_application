@@ -1,0 +1,386 @@
+﻿@model NewDigitalPrescriptionVM
+@{
+    ViewData["Title"] = "Send the Digital Prescription";
+}
+<head>
+    <link href="~/Background/StyleSheet.css" rel="stylesheet" />
+</head>
+<style>
+    html, body, #map-canvas {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #map-canvas {
+        height: 350px;
+        width: 70%;
+    }
+
+    label {
+        padding: 20px 10px;
+        display: inline-block;
+        font-size: 1em;
+    }
+
+    input {
+        font-size: 1em;
+        padding: 10px;
+    }
+</style>
+<div class="row p-5">     </div>
+<div class="row p-5">     </div>
+
+<div class="row digital">
+
+
+    <div class="col-md-8 offset-2">
+        <p>
+            <center> <h6>Send Your Digital Prescription to Pharmacy</h6></center>
+           
+        </p>
+
+        <div class="card mb-12">
+            <div class="row g-0">
+
+
+
+                <div class="col-md-12">
+                    <div class="card-header text-white" style="background-color:aquamarine">
+                        <div class="row">
+                            <p>
+                                <h4>Send Digital Prescription</h4>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                        {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group">
+                                            <label asp-for="PatientName" class="control-label"></label>
+                                            <input asp-for="PatientName" class="form-control" readonly />
+                                            <span asp-validation-for="PatientName" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="PharmacyUserId" class="control-label"></label>
+                                            @*<select asp-for="PharmacyIds" class="form-control" multiple></select>*@
+                                            <select asp-for="PharmacyUserId" class="form-control" asp-items="ViewBag.Users"></select>
+                                            <span asp-validation-for="PharmacyUserId" class="text-danger"></span>
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label asp-for="Location">Address: &nbsp;</label>
+                                            <input asp-for="Location" id="map-search" class="controls" type="text" placeholder="Search Box" size="104">
+                                            <span asp-validation-for="Location" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Lattiude">Lat:</label>
+                                            <input asp-for="Lattiude" type="text" class="latitude">
+                                            <span asp-validation-for="Lattiude" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Longtitude">Long:</label>
+                                            <input asp-for="Longtitude" type="text" class="longitude">
+                                            <span asp-validation-for="Longtitude" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="City">City: &nbsp;</label>
+                                            <input asp-for="City" type="text" class="reg-input-city" placeholder="City"><br />
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <center>
+                                                <p>Set your pick-up location</p>
+                                                <div id="map-canvas"></div>
+                                                <br />
+                                            </center>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="DoctorId" class="control-label"></label>
+                                        @*<select asp-for="DoctorId" class="form-control" multiple></select>*@
+                                        <select asp-for="DoctorId" class="form-control" asp-items="ViewBag.Doctors"></select>
+                                        <span asp-validation-for="DoctorId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="PharmacyIds" class="control-label"></label>
+                                        @*<select asp-for="PharmacyIds" class="form-control" multiple></select>*@
+                                        <select asp-for="PharmacyIds" class="form-control" asp-items="ViewBag.Pharmacies"></select>
+                                        <span asp-validation-for="PharmacyIds" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+
+                                <div class="form-group">
+                                    <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                                    <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Send to Pharmacy" class="btn btn-outline-success float-right" />
+                                    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Back to Home</a>
+                                </div>
+                            }
+
+
+
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                            {
+                                <!--<div class="form-group">-->
+                                @*<input type="submit" value="Update" class="btn btn-outline-success float-right" />*@
+                                <!--<a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                                </div>-->
+                                <div class="form-group">
+                                    <input type="submit" value="Send to Pharmacy" class="btn btn-outline-success float-right" />
+                                    <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Back to Home</a>
+                                </div>
+                            }
+
+                        }
+                    </form>
+                </div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+</div>
+
+
+@section Scripts{
+    <script>
+        //$("ImageURL").on("change", function () {
+        //    var output = document.getElementById("ImageUrlPreview");
+        //    output.src = $(this).val();
+        //})
+
+        //Signature
+
+        $(document).ready(function () {
+            var output = document.getElementById('SignaturePreview');
+            output.src = $("#Signature").val();
+        })
+
+        $("#Signature").on("change", function () {
+            var output = document.getElementById('SignaturePreview');
+            output.src = $(this).val();
+        })
+
+        //Seal
+
+        $(document).ready(function () {
+            var output = document.getElementById('SealPreview');
+            output.src = $("#Seal").val();
+        })
+
+        $("#Seal").on("change", function () {
+            var output = document.getElementById('SealPreview');
+            output.src = $(this).val();
+        })
+
+
+
+        //Location
+
+
+        function initialize() {
+
+            var mapOptions, map, marker, searchBox, city, loclink,
+                infoWindow = '',
+                addressEl = document.querySelector('#map-search'),
+                latEl = document.querySelector('.latitude'),
+                longEl = document.querySelector('.longitude'),
+                element = document.getElementById('map-canvas');
+            city = document.querySelector('.reg-input-city');
+            link = document.querySelector('.loclink');
+
+            mapOptions = {
+                // How far the maps zooms in.
+                zoom: 16,
+                // Current Lat and Long position of the pin/
+                center: new google.maps.LatLng(6.931970, 79.857750),
+                // center : {
+                // 	lat: -34.397,
+                // 	lng: 150.644
+                // },
+                disableDefaultUI: false, // Disables the controls like zoom control on the map if set to true
+                scrollWheel: true, // If set to false disables the scrolling on the map.
+                draggable: true, // If set to false , you cannot move the map around.
+                // mapTypeId: google.maps.MapTypeId.HYBRID, // If set to HYBRID its between sat and ROADMAP, Can be set to SATELLITE as well.
+                // maxZoom: 11, // Wont allow you to zoom more than this
+                // minZoom: 9  // Wont allow you to go more up.
+
+            };
+
+            /**
+             * Creates the map using google function google.maps.Map() by passing the id of canvas and
+             * mapOptions object that we just created above as its parameters.
+             *
+             */
+            // Create an object map with the constructor function Map()
+            map = new google.maps.Map(element, mapOptions); // Till this like of code it loads up the map.
+
+            /**
+             * Creates the marker on the map
+             *
+             */
+            marker = new google.maps.Marker({
+                position: mapOptions.center,
+                map: map,
+                // icon: 'http://pngimages.net/sites/default/files/google-maps-png-image-70164.png',
+                draggable: true
+            });
+
+            /**
+             * Creates a search box
+             */
+            searchBox = new google.maps.places.SearchBox((addressEl));
+
+            /**
+             * When the place is changed on search box, it takes the marker to the searched location.
+             */
+            google.maps.event.addListener(searchBox, 'places_changed', function () {
+                var places = searchBox.getPlaces(),
+                    bounds = new google.maps.LatLngBounds(),
+                    i, place, lat, long, resultArray,
+                    addresss = places[0].formatted_address;
+
+                for (i = 0; place = places[i]; i++) {
+                    bounds.extend(place.geometry.location);
+                    marker.setPosition(place.geometry.location);  // Set marker position new.
+                }
+
+                map.fitBounds(bounds);  // Fit to the bound
+                map.setZoom(15); // This function sets the zoom to 15, meaning zooms to level 15.
+                // console.log( map.getZoom() );
+
+                lat = marker.getPosition().lat();
+                long = marker.getPosition().lng();
+                latEl.value = lat;
+                longEl.value = long;
+                loclink.value = "https://www.google.com/maps/search/?api=1&query=" + lat + "%2C" + long;
+
+                resultArray = places[0].address_components;
+
+                // Get the city and set the city input value to the one selected
+                for (var i = 0; i < resultArray.length; i++) {
+                    if (resultArray[i].types[0] && 'administrative_area_level_2' === resultArray[i].types[0]) {
+                        citi = resultArray[i].long_name;
+                        city.value = citi;
+                    }
+                }
+
+                // Closes the previous info window if it already exists
+                if (infoWindow) {
+                    infoWindow.close();
+                }
+                /**
+                 * Creates the info Window at the top of the marker
+                 */
+                infoWindow = new google.maps.InfoWindow({
+                    content: addresss
+                });
+
+                infoWindow.open(map, marker);
+            });
+
+
+            /**
+             * Finds the new position of the marker when the marker is dragged.
+             */
+            google.maps.event.addListener(marker, "dragend", function (event) {
+                var lat, long, address, resultArray, citi;
+
+                console.log('i am dragged');
+                lat = marker.getPosition().lat();
+                long = marker.getPosition().lng();
+
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ latLng: marker.getPosition() }, function (result, status) {
+                    if ('OK' === status) {  // This line can also be written like if ( status == google.maps.GeocoderStatus.OK ) {
+                        address = result[0].formatted_address;
+                        resultArray = result[0].address_components;
+
+                        // Get the city and set the city input value to the one selected
+                        for (var i = 0; i < resultArray.length; i++) {
+                            if (resultArray[i].types[0] && 'administrative_area_level_2' === resultArray[i].types[0]) {
+                                citi = resultArray[i].long_name;
+                                console.log(citi);
+                                city.value = citi;
+                            }
+                        }
+                        addressEl.value = address;
+                        latEl.value = lat;
+                        longEl.value = long;
+                        loclink.value = "https://www.google.com/maps/search/?api=1&query=" + lat + "%2C" + long;
+
+                    } else {
+                        console.log('Geocode was not successful for the following reason: ' + status);
+                    }
+
+                    // Closes the previous info window if it already exists
+                    if (infoWindow) {
+                        infoWindow.close();
+                    }
+
+                    /**
+                     * Creates the info Window at the top of the marker
+                     */
+                    infoWindow = new google.maps.InfoWindow({
+                        content: address
+                    });
+
+                    infoWindow.open(map, marker);
+                });
+            });
+
+
+        }
+
+
+    </script>
+    <script>
+        (function (c) { c.fn.bPopup = function (A, E) { function L() { a.contentContainer = c(a.contentContainer || b); switch (a.content) { case "iframe": var d = c('<iframe class="b-iframe" ' + a.iframeAttr + "></iframe>"); d.appendTo(a.contentContainer); t = b.outerHeight(!0); u = b.outerWidth(!0); B(); d.attr("src", a.loadUrl); l(a.loadCallback); break; case "image": B(); c("<img />").load(function () { l(a.loadCallback); F(c(this)) }).attr("src", a.loadUrl).hide().appendTo(a.contentContainer); break; default: B(), c('<div class="b-ajax-wrapper"></div>').load(a.loadUrl, a.loadData, function (d, b, e) { l(a.loadCallback, b); F(c(this)) }).hide().appendTo(a.contentContainer) } } function B() { a.modal && c('<div class="b-modal ' + e + '"></div>').css({ backgroundColor: a.modalColor, position: "fixed", top: 0, right: 0, bottom: 0, left: 0, opacity: 0, zIndex: a.zIndex + v }).appendTo(a.appendTo).fadeTo(a.speed, a.opacity); C(); b.data("bPopup", a).data("id", e).css({ left: "slideIn" == a.transition || "slideBack" == a.transition ? "slideBack" == a.transition ? f.scrollLeft() + w : -1 * (x + u) : m(!(!a.follow[0] && n || g)), position: a.positionStyle || "absolute", top: "slideDown" == a.transition || "slideUp" == a.transition ? "slideUp" == a.transition ? f.scrollTop() + y : z + -1 * t : p(!(!a.follow[1] && q || g)), "z-index": a.zIndex + v + 1 }).each(function () { a.appending && c(this).appendTo(a.appendTo) }); G(!0) } function r() { a.modal && c(".b-modal." + b.data("id")).fadeTo(a.speed, 0, function () { c(this).remove() }); a.scrollBar || c("html").css("overflow", "auto"); c(".b-modal." + e).unbind("click"); f.unbind("keydown." + e); k.unbind("." + e).data("bPopup", 0 < k.data("bPopup") - 1 ? k.data("bPopup") - 1 : null); b.undelegate(".bClose, ." + a.closeClass, "click." + e, r).data("bPopup", null); clearTimeout(H); G(); return !1 } function I(d) { y = k.height(); w = k.width(); h = D(); if (h.x || h.y) clearTimeout(J), J = setTimeout(function () { C(); d = d || a.followSpeed; var e = {}; h.x && (e.left = a.follow[0] ? m(!0) : "auto"); h.y && (e.top = a.follow[1] ? p(!0) : "auto"); b.dequeue().each(function () { g ? c(this).css({ left: x, top: z }) : c(this).animate(e, d, a.followEasing) }) }, 50) } function F(d) { var c = d.width(), e = d.height(), f = {}; a.contentContainer.css({ height: e, width: c }); e >= b.height() && (f.height = b.height()); c >= b.width() && (f.width = b.width()); t = b.outerHeight(!0); u = b.outerWidth(!0); C(); a.contentContainer.css({ height: "auto", width: "auto" }); f.left = m(!(!a.follow[0] && n || g)); f.top = p(!(!a.follow[1] && q || g)); b.animate(f, 250, function () { d.show(); h = D() }) } function M() { k.data("bPopup", v); b.delegate(".bClose, ." + a.closeClass, "click." + e, r); a.modalClose && c(".b-modal." + e).css("cursor", "pointer").bind("click", r); N || !a.follow[0] && !a.follow[1] || k.bind("scroll." + e, function () { if (h.x || h.y) { var d = {}; h.x && (d.left = a.follow[0] ? m(!g) : "auto"); h.y && (d.top = a.follow[1] ? p(!g) : "auto"); b.dequeue().animate(d, a.followSpeed, a.followEasing) } }).bind("resize." + e, function () { I() }); a.escClose && f.bind("keydown." + e, function (a) { 27 == a.which && r() }) } function G(d) { function c(e) { b.css({ display: "block", opacity: 1 }).animate(e, a.speed, a.easing, function () { K(d) }) } switch (d ? a.transition : a.transitionClose || a.transition) { case "slideIn": c({ left: d ? m(!(!a.follow[0] && n || g)) : f.scrollLeft() - (u || b.outerWidth(!0)) - 200 }); break; case "slideBack": c({ left: d ? m(!(!a.follow[0] && n || g)) : f.scrollLeft() + w + 200 }); break; case "slideDown": c({ top: d ? p(!(!a.follow[1] && q || g)) : f.scrollTop() - (t || b.outerHeight(!0)) - 200 }); break; case "slideUp": c({ top: d ? p(!(!a.follow[1] && q || g)) : f.scrollTop() + y + 200 }); break; default: b.stop().fadeTo(a.speed, d ? 1 : 0, function () { K(d) }) } } function K(d) { d ? (M(), l(E), a.autoClose && (H = setTimeout(r, a.autoClose))) : (b.hide(), l(a.onClose), a.loadUrl && (a.contentContainer.empty(), b.css({ height: "auto", width: "auto" }))) } function m(a) { return a ? x + f.scrollLeft() : x } function p(a) { return a ? z + f.scrollTop() : z } function l(a, e) { c.isFunction(a) && a.call(b, e) } function C() { z = q ? a.position[1] : Math.max(0, (y - b.outerHeight(!0)) / 2 - a.amsl); x = n ? a.position[0] : (w - b.outerWidth(!0)) / 2; h = D() } function D() { return { x: w > b.outerWidth(!0), y: y > b.outerHeight(!0) } } c.isFunction(A) && (E = A, A = null); var a = c.extend({}, c.fn.bPopup.defaults, A); a.scrollBar || c("html").css("overflow", "hidden"); var b = this, f = c(document), k = c(window), y = k.height(), w = k.width(), N = /OS 6(_\d)+/i.test(navigator.userAgent), v = 0, e, h, q, n, g, z, x, t, u, J, H; b.close = function () { r() }; b.reposition = function (a) { I(a) }; return b.each(function () { c(this).data("bPopup") || (l(a.onOpen), v = (k.data("bPopup") || 0) + 1, e = "__b-popup" + v + "__", q = "auto" !== a.position[1], n = "auto" !== a.position[0], g = "fixed" === a.positionStyle, t = b.outerHeight(!0), u = b.outerWidth(!0), a.loadUrl ? L() : B()) }) }; c.fn.bPopup.defaults = { amsl: 50, appending: !0, appendTo: "body", autoClose: !1, closeClass: "b-close", content: "ajax", contentContainer: !1, easing: "swing", escClose: !0, follow: [!0, !0], followEasing: "swing", followSpeed: 500, iframeAttr: 'scrolling="no" frameborder="0"', loadCallback: !1, loadData: !1, loadUrl: !1, modal: !0, modalClose: !0, modalColor: "#000", onClose: !1, onOpen: !1, opacity: .7, position: ["auto", "auto"], positionStyle: "absolute", scrollBar: !0, speed: 250, transition: "fadeIn", transitionClose: !1, zIndex: 9997 } })(jQuery);
+
+
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm9_c4eIRn27WaXAqkoZh45QtvX9u6jyU&libraries=places&callback=initialize"></script>
+}

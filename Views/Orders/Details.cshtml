@@ -1,0 +1,221 @@
+﻿@model Orders
+
+@{
+    ViewData["Title"] = "Digital Prescription Details";
+    //Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Example 2</title>
+    @*<link rel="stylesheet" href="style.css" media="all" />*@
+    <link href="~/Invoice/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="row p-5">     </div>
+        <div class="row p-5">     </div>
+        <div class="row p-5">     </div>
+        <div class="col-md-12">
+            <center>
+                <a style="background-color:mediumpurple" asp-action="FindDeliveryPersons" asp-controller="DeliveryPersons" class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Find Delivery Person</a>
+            </center>
+
+        </div>
+        <br><br><br><br>
+
+        <table width="80%" border="0" id="html-content-holder">
+            <tr height="80%">
+                <td>
+                    <div class="clearfix">
+                        <div id="logo">
+                            @*<img src="logo.png">*@
+                            <a class="navbar-brand" asp-action="Index" asp-controller="Home"><img src="~/logoimages/1.png" style="width:200px;height:125px" /></a>
+                        </div>
+                        <div id="company">
+                            <h2 class="name">@Model.Email</h2>
+                            <div>455 Foggy Heights, AZ 85004, US</div>
+                            <div>(602) 519-0450</div>
+                            <div><a href="mailto:company@example.com">company@example.com</a></div>
+                        </div>
+                    </div>
+                    @*</div>*@
+                    <hr style="height:1px;border-width:0;color:#2ED8B7;background-color:#2ED8B7">
+                    <main>
+                        <div id="details" class="clearfix">
+                            <div id="client">
+                                <div class="to">INVOICE TO:</div>
+                                <h2 class="name">@Model.customerFirstName</h2>
+                                <div class="address">796 Silver Harbour, TX 79273, US</div>
+                                <div class="email">@Model.CustomerUserEmailTag</div>
+                            </div>
+                            <div id="invoice">
+                                <h1>INVOICE #425142<b>@Model.Id</b></h1>
+                                <div class="date">Date of Invoice: @Model.DateofIssue</div>
+                                @*<div class="date">Due Date: 30/06/2014</div>*@
+                            </div>
+                        </div>
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <thead>
+                                <tr>
+                                    <th class="no">#</th>
+                                    <th class="desc">DESCRIPTION</th>
+                                    <th class="unit">UNIT PRICE</th>
+                                    <th class="qty">QUANTITY</th>
+                                    <th class="total">TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="no">01</td>
+                                    <td class="desc">@Model.item1</td>
+                                    <td class="unit">@Model.unitPrice1</td>
+                                    <td class="qty">@Model.numberofUnits1</td>
+                                    <td class="total">$@Model.price1</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="no">02</td>
+                                    <td class="desc">@Model.item2</td>
+                                    <td class="unit">@Model.unitPrice2</td>
+                                    <td class="qty">@Model.numberofUnits2</td>
+                                    <td class="total">$@Model.price2</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">03</td>
+                                    <td class="desc">@Model.item3</td>
+                                    <td class="unit">@Model.unitPrice3</td>
+                                    <td class="qty">@Model.numberofUnits3</td>
+                                    <td class="total">$@Model.price3</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">04</td>
+                                    <td class="desc">@Model.item4</td>
+                                    <td class="unit">@Model.unitPrice4</td>
+                                    <td class="qty">@Model.numberofUnits4</td>
+                                    <td class="total">$@Model.price4</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">05</td>
+                                    <td class="desc">@Model.item5</td>
+                                    <td class="unit">@Model.unitPrice5</td>
+                                    <td class="qty">@Model.numberofUnits5</td>
+                                    <td class="total">$@Model.price5</td>
+                                </tr>
+                                <tr>
+                                    <td class="no">06</td>
+                                    <td class="desc">@Model.item6</td>
+                                    <td class="unit">@Model.unitPrice6</td>
+                                    <td class="qty">@Model.numberofUnits6</td>
+                                    <td class="total">$@Model.price6</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="2">SUBTOTAL</td>
+                                    <td>$@Model.Total</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="2">Service Charges 10%</td>
+                                    @*<td>$1,300.00</td>*@
+                                </tr>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td colspan="2">GRAND TOTAL</td>
+                                    <td>$@Model.GrandTotal</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div id="thanks">Thank you!</div>
+                        <div id="notices">
+                            <div>NOTICE:</div>
+                            <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                        </div>
+                    </main>
+                    <div class="tfooter">
+
+                        Invoice was created on a computer and is valid without the signature and seal.
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+        <div class="row">
+
+
+
+            <div class="col-md-3 ">
+                <a class="btn btn-outline-primary float-right" asp-action="Index">
+                    Back to List
+                </a>
+
+            </div>
+
+            <div class="col-md-3">
+                <input class="btn btn-primary" id="btn-Preview-Image" type="button" value="Confirm Download" />
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-primary" id="btn-Convert-Html2Image">Download Invoice</a>
+            </div>
+            @*<div class="col-md-3">
+                <a class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Add to Cart</a>
+            </div>*@
+
+
+
+            <div class="col-md-12">
+                <center>
+                    <a style="background-color:mediumpurple" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success text-white"><i class="bi bi-cart-plus"></i> Send to Delivery Person</a>
+                </center>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+
+
+@section Scripts{
+    <script src="~/HomePageTheme/lib/jquery/dist/jquery.js"></script>
+    <script src="~/HomePageTheme/lib/jquery/dist/html2canvas.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+
+            var element = $("#html-content-holder"); // global variable
+            var getCanvas; // global variable
+
+            $("#btn-Preview-Image").on('click', function () {
+                html2canvas(element, {
+                    onrendered: function (canvas) {
+                        $("#previewImage").append(canvas);
+                        getCanvas = canvas;
+                    }
+                });
+            });
+
+            $("#btn-Convert-Html2Image").on('click', function () {
+                var imgageData = getCanvas.toDataURL("image/png");
+                // Now browser starts downloading it instead of just showing it
+                var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+                $("#btn-Convert-Html2Image").attr("download", "MyInvoice.png").attr("href", newData);
+            });
+
+        });
+    </script>
+
+}

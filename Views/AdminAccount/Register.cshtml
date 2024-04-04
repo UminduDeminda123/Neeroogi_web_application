@@ -1,0 +1,187 @@
+﻿@using Neerogilksample.Data.ViewModels;
+@model AdminRegisterVM;
+
+@{
+
+    ViewData["Title"] = "Register with Neerogilk";
+    Layout = "_LoginLayout";
+}
+
+
+
+
+@*<div class="row">*@
+
+
+@*@if (TempData["Error"] != null)
+    {
+        <div class="col-md-12 alert alert-danger">
+            <span><b>Sorry!</b> - @TempData["Error"] </span>
+        </div>
+    }
+
+
+    <div class="row">*@
+<!--<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">-->
+            @*<span class="login100-form-logo">*@
+            <!--<div>
+                <center>
+
+                    <img src="~/logoimages/2.png" style="width:400px;height:auto" />
+                </center>-->
+                @*<i class="zmdi zmdi-landscape"></i>*@
+
+            <!--</div>
+        </div>
+        </div>
+
+
+        </div>-->
+
+    
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <div>
+                        <center>
+
+                            <img src="~/logoimages/1.png" style="width:200px;height:125px" />
+                        </center>
+                    </div>
+                    <div class="text-center">
+                        <img class="card-img-top border-info rounded-circle " style="height:125px;width:125px;" src="~/logindetails/images/hospital-patient-icon.png" alt="Card image cap">
+                    </div>
+                    <form asp-action="Register" class="login100-form ">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+
+                        <span class="login100-form-title p-b-34 p-t-27 form-group">
+                            Register
+                        </span>
+
+
+                        <div class="row">
+                            <div class="col">
+
+
+                                <div class="form-group">
+                                    <label id="email" asp-for="FirstName" class="control-label"></label>
+                                    <div class="input-group">
+                                        <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                            <i class="mdi mdi-12px mdi-account"></i>
+                                        </div>
+                                        <input id="fname" asp-for="FirstName" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your First Name">
+                                    </div>
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label id="email" asp-for="EmailAddress" class="control-label"></label>
+                                    <div class="input-group">
+                                        <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                            <i class="mdi mdi-12px mdi-account"></i>
+                                        </div>
+                                        <input id="emailad" asp-for="EmailAddress" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your Email">
+                                    </div>
+                                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label id="email" asp-for="Password" class="control-label"></label>
+                                    <div class="input-group">
+                                        <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                            <i class="mdi mdi-12px mdi-account"></i>
+                                        </div>
+                                        <input id="inpswd" asp-for="Password" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your Password">
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="col">
+
+                                <div class="form-group">
+                                    <label id="email" asp-for="LastName" class="control-label"></label>
+                                    <div class="input-group">
+                                        <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                            <i class="mdi mdi-12px mdi-account"></i>
+                                        </div>
+                                        <input id="lname" asp-for="LastName" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Enter Your Last Name">
+                                    </div>
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="email" asp-for="ConfirmEmail" class="control-label"></label>
+                                    <div class="input-group">
+                                        <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                            <i class="mdi mdi-12px mdi-account"></i>
+                                        </div>
+                                        <input id="cnemail" asp-for="ConfirmEmail" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Confirm Your Email">
+                                    </div>
+                                    <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label id="email" asp-for="ConfirmPassword" class="control-label"></label>
+                                    <div class="input-group">
+                                        <div class="bg-transparent border-0 input-group-text position-absolute" style="z-index: 9;">
+                                            <i class="mdi mdi-12px mdi-account"></i>
+                                        </div>
+                                        <input id="cnpswd" asp-for="ConfirmPassword" class="form-control form-control-lg pl-5 rounded-pill" placeholder="Confirm Your Password">
+                                    </div>
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+
+
+                        <div class="form-group">
+
+                            <input class="btn btn-success btn-lg btn-block" type="submit" value="Register" />
+
+                        </div>
+
+                        <div class="form-group">
+                            <a class="btn btn-light btn-lg btn-block" asp-controller="Home" asp-action="Index">Cancel</a>
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+        @*</div>
+            </div>*@

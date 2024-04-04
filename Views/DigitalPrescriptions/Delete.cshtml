@@ -1,0 +1,188 @@
+﻿@model DigitalPrescription
+
+@{
+    ViewData["Title"] = "Digital Prescription Details";
+}
+<head>
+    <link href="~/Background/StyleSheet.css" rel="stylesheet" />
+</head>
+<div class="row digital">
+    <div class="col-md-8 offset-2">
+
+        <div class="card mb-12">
+            <div class="row g-0">
+
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @Model.PatientName
+                                    </h5>
+                                </p>
+
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <p class="card-text">
+                                    <h5 class="card-title">
+                                        @Model.ExpirationDate
+                                    </h5>
+                                </p>
+
+
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <p class="card-text " style="text-align:center">
+                                    <b>Digital Prescription Status: </b>
+                                    @if (DateTime.Now >= Model.Dateofissue && DateTime.Now <= Model.ExpirationDate)
+                                    {
+                                        <span class="badge bg-success text-white">AVAILABLE</span>
+                                    }
+                                    else if (DateTime.Now > Model.ExpirationDate)
+                                    {
+                                        <span class="badge bg-danger text-white">EXPIRED</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-primary text-white">UPCOMING</span>
+                                    }
+                                </p>
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card-body">
+
+                        <p class="card-text">
+                            <b>Patient's Name': </b> @Model.PatientName
+
+                        </p>
+                        <p class="card-text">
+                            <b>Patient's Age': </b> @Model.Age
+
+                        </p>
+
+                        <p class="card-text">
+                            <b>Type of Drug: </b> @Model.DrugProductCategory
+
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card-body">
+
+
+                        <p class="card-text">
+                            <b>Patient's Address': </b> @Model.PatientAddress
+
+                        </p>
+                        <p class="card-text">
+                            <b>Patient's Birthday': </b> @Model.BirthDay.ToString("dd MM yy")
+
+                        </p>
+                        <p class="card-text">
+                            <b>Period of Meal: </b> @Model.Mealperiod
+
+                        </p>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <div class="card-body">
+
+                        <p class="card-text">
+                            <b>Patient's Issue': </b> @Model.Description
+
+                        </p>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text"><b>Start Date: </b>@Model.Dateofissue.ToString("dd MMM yy")</p>
+                        <div>
+                            <img src="@Model.Signature" style="max-width:150px" alt="@Model.DoctorId">
+                        </div>
+                        <p class="card-text">
+                            <b>Doctor's Signature</b>
+
+                        </p>
+                        <p class="card-text">
+                            <b>Doctor : </b>
+                            <a asp-controller="Doctors" asp-action="Details" asp-route-id="@Model.DoctorId">
+                                @Model.Doctor.FullName
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text"><b>Date of Expire: </b>@Model.ExpirationDate.ToString("dd MMM yy")</p>
+                        <div>
+                            <img src="@Model.Seal" style="max-width:150px" alt="@Model.DoctorId">
+                        </div>
+                        <p class="card-text">
+                            <b>Doctor's Seal</b>
+
+                        </p>
+                        <p class="card-text">
+                            <b>Digital Prescription Issued Date </b> @Model.Dateofissue
+
+                        </p>
+
+
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer">
+
+
+                        <div class="form-group">
+                            @*<input type="submit" value="Create" class="btn btn-outline-success float-right"  />*@
+                            <form asp-action="Delete">
+                                <input type="hidden" asp-for="Id" />
+                                <input type="submit" value="Confirm" class="btn btn-danger float-right" />
+                            </form>
+
+                            <a class="btn btn-outline-secondary" asp-controller="DigitalPrescriptions" asp-action="Index">Show All</a>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

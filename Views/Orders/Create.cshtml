@@ -1,0 +1,285 @@
+﻿@model OrdersVM
+@{
+    ViewData["Title"] = "Create a New Invoice";
+}
+<html>
+<head>
+    <link href="~/Background/StyleSheet.css" rel="stylesheet" />
+    <style>
+        .heading {
+            font-size: 16px;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="ord1">
+        <div class="row p-5">     </div>
+        <div class="row p-5">     </div>
+        <center>
+            
+            <div style="padding-top:60px;">
+                <div class="ordnew col-md-6 sm-12">
+                    <br /><br />
+                    <p>
+                        <h4>Create a New Invoice</h4>
+                    </p>
+                    <br /><br /><br />
+
+                    <div>
+
+                        <div class="row">
+                            <div class="col-md-8 offset-2">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="CustomerUserId" class="control-label"></label>
+                                                @*<select asp-for="PharmacyIds" class="form-control" multiple></select>*@
+                                                <select asp-for="CustomerUserId" class="form-control" asp-items="ViewBag.AppUsers"></select>
+                                                <span asp-validation-for="CustomerUserId" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label asp-for="customerFirstName" class="control-label"></label>
+                                                <input asp-for="customerFirstName" class="form-control" />
+                                                <span asp-validation-for="customerFirstName" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="customerDeliveryContactNumber" class="control-label"></label>
+                                                <input asp-for="customerDeliveryContactNumber" class="form-control" />
+                                                <span asp-validation-for="customerDeliveryContactNumber" class="text-danger"></span>
+                                            </div>
+                                            <!--<div class="form-group">
+                                    <label asp-for="DrugProductCategory" class="control-label"></label>
+                                    <select asp-for="DrugProductCategory" class="form-control"></select>-->
+                                            @*<select asp-for="DrugProductCategory" class="form-control" asp-items="Html.GetEnumSelectList<DrugProductCategory>"></select>*@
+                                            <!--<span asp-validation-for="DrugProductCategory" class="text-danger"></span>
+                                    </div>-->
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label asp-for="customerLastName" class="control-label"></label>
+                                                <input asp-for="customerLastName" class="form-control" />
+                                                <span asp-validation-for="customerLastName" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label asp-for="DateofIssue" class="control-label"></label>
+                                                <input asp-for="DateofIssue" type="date" class="form-control" />
+                                                <span asp-validation-for="DateofIssue" class="text-danger"></span>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="heading">Item</p>
+
+                                                <input asp-for="item1" class="form-control" />
+                                                <span asp-validation-for="item1" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="item2" class="form-control" />
+                                                <span asp-validation-for="item2" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="item3" class="form-control" />
+                                                <span asp-validation-for="item3" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="item4" class="form-control" />
+                                                <span asp-validation-for="item4" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="item5" class="form-control" />
+                                                <span asp-validation-for="item5" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="item6" class="form-control" />
+                                                <span asp-validation-for="item6" class="text-danger"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="heading">Unit Price</p>
+
+                                                <input asp-for="unitPrice1" class="form-control" />
+                                                <span asp-validation-for="unitPrice1" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="unitPrice2" class="form-control" />
+                                                <span asp-validation-for="unitPrice2" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="unitPrice3" class="form-control" />
+                                                <span asp-validation-for="unitPrice3" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="unitPrice4" class="form-control" />
+                                                <span asp-validation-for="unitPrice4" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="unitPrice5" class="form-control" />
+                                                <span asp-validation-for="unitPrice5" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="unitPrice6" class="form-control" />
+                                                <span asp-validation-for="unitPrice6" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <p class="heading">No. of Units</p>
+
+                                                <input asp-for="numberofUnits1" class="form-control" />
+                                                <span asp-validation-for="numberofUnits1" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="numberofUnits2" class="form-control" />
+                                                <span asp-validation-for="numberofUnits2" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="numberofUnits3" class="form-control" />
+                                                <span asp-validation-for="numberofUnits3" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="numberofUnits4" class="form-control" />
+                                                <span asp-validation-for="numberofUnits4" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="numberofUnits5" class="form-control" />
+                                                <span asp-validation-for="numberofUnits5" class="text-danger"></span>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <input asp-for="numberofUnits6" class="form-control" />
+                                                <span asp-validation-for="numberofUnits6" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        @*<div class="col-md-3">
+                                        <div class="form-group">
+                                            <label asp-for="price1" class="control-label"></label>
+                                            <input asp-for="price1" class="form-control" />
+                                            <span asp-validation-for="price1" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="price2" class="control-label"></label>
+                                            <input asp-for="price2" class="form-control" />
+                                            <span asp-validation-for="price2" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="price3" class="control-label"></label>
+                                            <input asp-for="price3" class="form-control" />
+                                            <span asp-validation-for="price3" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="price4" class="control-label"></label>
+                                            <input asp-for="price4" class="form-control" />
+                                            <span asp-validation-for="price4" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="price5" class="control-label"></label>
+                                            <input asp-for="price5" class="form-control" />
+                                            <span asp-validation-for="price5" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="price6" class="control-label"></label>
+                                            <input asp-for="price6" class="form-control" />
+                                            <span asp-validation-for="price6" class="text-danger"></span>
+                                        </div>
+
+                                    </div>*@
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                                            </div>
+                                        </div>
+                                        </div>
+
+
+</form>
+
+
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="row p-5">     </div>
+        </center>
+        @section Scripts{
+            <script>
+
+
+                $(document).ready(function () {
+                    var output = document.getElementById('SignaturePreview');
+                    output.src = $("#Signature").val();
+                })
+
+                $("#Signature").on("change", function () {
+                    var output = document.getElementById('SignaturePreview');
+                    output.src = $(this).val();
+                })
+
+                //Seal
+
+                $(document).ready(function () {
+                    var output = document.getElementById('SealPreview');
+                    output.src = $("#Seal").val();
+                })
+
+                $("#Seal").on("change", function () {
+                    var output = document.getElementById('SealPreview');
+                    output.src = $(this).val();
+                })
+            </script>
+        }
+        <div class="row p-5">     </div>
+        <div class="row p-5">     </div>
+
+    </div>
+</body>
+</html>
