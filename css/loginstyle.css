@@ -1,0 +1,59 @@
+﻿body {
+    background-image : url('../logindetails/images/bg-01.jpg')
+}
+#email{
+   color:white;
+   font-family:Calibri;
+   font-size:18px;
+}
+
+#pswd {
+    color: white;
+    font-family: Calibri;
+    font-size: 18px;
+}
+
+#logemail {
+    color: black;
+    font-family: Calibri;
+    font-size: 18px;
+}
+
+#logpswd {
+    color: black;
+    font-family: Calibri;
+    font-size: 18px;
+}
+
+#fname{
+    color:black;
+    font-family:Calibri;
+    font-size:12px;
+}
+#lname {
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+}
+#emailad {
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+}
+
+#inpswd {
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+}
+
+#cnemail {
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+}
+#cnpswd {
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+}

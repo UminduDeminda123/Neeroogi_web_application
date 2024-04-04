@@ -1,0 +1,137 @@
+﻿body {
+}
+
+.doc {
+    background-image: url(/Background/DocBackground1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.docnew {
+    color: black;
+    align-content: center;
+    width: auto;
+    border-radius: 20px;
+    opacity: 0.9;
+    background-color: #F0FAFA;
+}
+
+.control-label {
+    color: black;
+}
+
+.form-control {
+    border-style: solid;
+    border-color: #b9faed;
+    border-radius: 15px;
+    border-width: medium;
+}
+
+.text-danger {
+    color: black;
+}
+
+
+.pha {
+    background-image: url(/Background/PhamBackground.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.phanew {
+    align-content: center;
+    width: auto;
+    border-radius: 20px;
+    background-color: #F0FAFA;
+    opacity: 0.9;
+}
+
+.del {
+    background-image: url(/Background/DeliveryPersonBackground.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.delnew {
+    align-content: center;
+    width: auto;
+    border-radius: 20px;
+    background-color: #F0FAFA;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.digital {
+    background-image: url(/Background/Background3.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.ord {
+    background-image: url(/Background/Background2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.ord1 {
+    background-image: url(/Background/Background4.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.ordnew {
+    align-content: center;
+    width: auto;
+    border-radius: 20px;
+    background-color: #F0FAFA;
+    opacity: 0.9;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.rcompleted {
+    background-image: url(/Background/Background7.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.form-group-new {
+    color: #fff;
+}
+
+.control-label2 {
+    color: black;
+}
+.countback {
+    margin-top: 10px;
+    font-weight: bold;
+    width: auto;
+    background-color: #78E6D1;
+    border-radius: 8px;
+}
+.bodydoc {
+    background-image: url(/HomePageTheme/LoginBackground.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}

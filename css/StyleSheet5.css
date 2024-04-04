@@ -1,0 +1,7 @@
+﻿body {
+    background-image: url('../logoimages/shape-02-bg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
